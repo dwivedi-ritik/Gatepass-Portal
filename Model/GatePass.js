@@ -41,6 +41,6 @@ const gatePass = Schema({
     }
 })
 
-module.exports = mongoose.model('GetPass', gatePass);
+module.exports = mongoose.models.GetPass || mongoose.model('GetPass', gatePass);
 
 

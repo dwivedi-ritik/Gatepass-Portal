@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 export default function Status() {
+    const tokenId = useRef("")
+    const router = useRouter()
+
+    const getTokenData = () => {
+        router.push("/status/" + tokenId.current.value)
+    }
     return (
         <div>
             <Head>
@@ -18,9 +25,9 @@ export default function Status() {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                         Add Your Token
                     </label>
-                    <input className="appearance-none h-12 block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="text" placeholder=""></input>
+                    <input ref={tokenId} className="appearance-none h-12 block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="text" placeholder=""></input>
                 </div>
-                <div>
+                <div onClick={getTokenData} >
                     <a className="appearance-none cursor-pointer flex items-center gap-2 rounded border border-transparent h-12 mt-6 bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700  sm:text-sm">
                         <p className="tracking-wide font-semibold" >Search</p>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
@@ -34,7 +41,7 @@ export default function Status() {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <a className=' text-indigo-600 tracking-wide text-xs'>Back to home</a>
+                    <a className=' text-indigo-600 tracking-wide text-xs' href="/">Back to home</a>
                 </div>
             </div>
 

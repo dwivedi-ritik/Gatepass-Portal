@@ -2,11 +2,14 @@ import Head from 'next/head'
 import { useRef, useState } from 'react'
 
 import Modal from '../components/Modal.js'
-import { dateParser } from '../utils/helper.js'
+
+import { dateParser, createToken } from '../utils/helper.js'
+import { gatePassStatus } from '../utils/constants.js'
 
 export default function Home() {
 
   let [showModel, setShowModel] = useState(false)
+  let [token, setToken] = useState("")
   const firstname = useRef(null)
   const lastname = useRef(null)
   const branch = useRef(null)
@@ -23,25 +26,23 @@ export default function Home() {
     let out = await fetch("/api/gatepass/add", {
       method: "POST",
       body: JSON.stringify({
-        firstname: "ritik",
-        lastname: "dwivedi",
-        branch: "BTech",
-        year: 2,
-        reason: "home",
-        status: "pending",
-        mobileNo: 2109021,
-        parentsNo: 2109021,
-        roomNo: 103,
-        arrival: new Date(),
-        departure: new Date(),
-        token: "121ssa2"
-
+        firstname: firstname.current.value,
+        lastname: lastname.current.value,
+        branch: branch.current.value,
+        year: year.current.value,
+        reason: reason.current.value,
+        status: gatePassStatus.PENDING,
+        mobileNo: mobileNo.current.value,
+        parentsNo: parentsNo.current.value,
+        roomNo: roomNo.current.value,
+        arrival: dateParser(toDate.current.value),
+        departure: dateParser(fromDate.current.value),
+        token: createToken()
       })
     })
-
-    let r = await out.json()
-    console.log(r)
-
+    const resJson = await out.json()
+    setToken(resJson.token)
+    setShowModel(true)
   }
 
   return (
@@ -51,7 +52,7 @@ export default function Home() {
         <meta lang='en'></meta>
         <meta description='getpass form'></meta>
       </Head>
-      {showModel ? <Modal /> : null}
+      {showModel ? <Modal token={token} passUrl={`http://localhost:3000/status/${token}`} /> : null}
       <div className='flex items-center justify-center mt-12 md:mt-8'>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
         <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Get Pass Form </p>
