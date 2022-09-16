@@ -2,13 +2,15 @@ import Head from 'next/head'
 import { useRef, useState } from 'react'
 
 import Modal from '../components/Modal.js'
-
+import Spinner from '../components/Spinner.js'
 import { dateParser, createToken } from '../utils/helper.js'
 import { gatePassStatus } from '../utils/constants.js'
 
 export default function Home() {
 
   let [showModel, setShowModel] = useState(false)
+  let [showSpinner, setShowSpinner] = useState(false)
+
   let [token, setToken] = useState("")
   const firstname = useRef(null)
   const lastname = useRef(null)
@@ -23,6 +25,7 @@ export default function Home() {
 
   const formSubmit = async (e) => {
     e.preventDefault()
+    setShowSpinner(true)
     let out = await fetch("/api/gatepass/add", {
       method: "POST",
       body: JSON.stringify({
@@ -42,6 +45,7 @@ export default function Home() {
     })
     const resJson = await out.json()
     setToken(resJson.token)
+    setShowSpinner(false)
     setShowModel(true)
   }
 
@@ -53,6 +57,7 @@ export default function Home() {
         <meta description='getpass form'></meta>
       </Head>
       {showModel ? <Modal token={token} passUrl={`http://localhost:3000/status/${token}`} /> : null}
+      {showSpinner ? <Spinner /> : null}
       <div className='flex items-center justify-center mt-12 md:mt-8'>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
         <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Get Pass Form </p>

@@ -4,6 +4,14 @@ export default function Pending(props) {
     const { Image } = useQRCode()
     return (
         <div className=''>
+            <div className="w-full pl-4 flex justify-start mt-4 font-semibold cursor-pointer" href="/">
+                <div className='flex  items-center gap-1'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                    <a className=' text-indigo-600 tracking-wide text-xs' href="/">Back to home</a>
+                </div>
+            </div>
             <div className='w-3/4 md:w-1/3 h-auto mt-24 mx-auto'>
                 <div className='flex justify-center w-full'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-36 h-36 -mt-16 text-teal-400">
@@ -37,6 +45,7 @@ export default function Pending(props) {
 
                 </div>
             </div>
+
         </div>
     )
 }
