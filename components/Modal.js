@@ -14,7 +14,7 @@ export default function Modal(props) {
                                     </svg>
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 className="text-lg font-medium leading-6 text-gray-800 font-semibold" id="modal-title">Your Token is Generated</h3>
+                                    <h3 className="text-lg leading-6 text-gray-800 font-semibold" id="modal-title">Your Token is Generated</h3>
                                     <div className="mt-2">
                                         <p className="text-sm text-gray-500">You can track your Get Pass Approval using this token</p>
                                     </div>

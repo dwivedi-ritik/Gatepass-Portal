@@ -1,10 +1,48 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+
 import Modal from '../components/Modal.js'
+import { dateParser } from '../utils/helper.js'
 
 export default function Home() {
+
   let [showModel, setShowModel] = useState(false)
+  const firstname = useRef(null)
+  const lastname = useRef(null)
+  const branch = useRef(null)
+  const year = useRef(null)
+  const mobileNo = useRef(null)
+  const parentsNo = useRef(null)
+  const roomNo = useRef(null)
+  const reason = useRef(null)
+  const fromDate = useRef(null)
+  const toDate = useRef(null)
+
+  const formSubmit = async (e) => {
+    e.preventDefault()
+    let out = await fetch("/api/gatepass/add", {
+      method: "POST",
+      body: JSON.stringify({
+        firstname: "ritik",
+        lastname: "dwivedi",
+        branch: "BTech",
+        year: 2,
+        reason: "home",
+        status: "pending",
+        mobileNo: 2109021,
+        parentsNo: 2109021,
+        roomNo: 103,
+        arrival: new Date(),
+        departure: new Date(),
+        token: "121ssa2"
+
+      })
+    })
+
+    let r = await out.json()
+    console.log(r)
+
+  }
 
   return (
     <div>
@@ -21,20 +59,20 @@ export default function Home() {
       </div>
       <p className='italic text-xs text-center text-gray-700'>Fill add all the details carefully</p>
       <div className="flex justify-center my-4">
-        <form className="w-full max-w-lg mx-5 sm:mx-0" onSubmit={(e) => { e.preventDefault(); setShowModel(true) }}>
+        <form className="w-full max-w-lg mx-5 sm:mx-0" onSubmit={formSubmit}>
           <p className="block uppercase my-7 tracking-wide text-gray-700 text-md font-bold">Your Details</p>
           <div className="flex flex-wrap -mx-3 my-4">
             <div className="w-full md:w-1/2 px-3 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 First Name
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 " id="grid-first-name" type="text" placeholder="Jane"></input>
+              <input ref={firstname} className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 " type="text" placeholder="firstname"></input>
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Last Name
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-last-name" type="text" placeholder="Doe"></input>
+              <input ref={lastname} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="text" placeholder="lastname"></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3">
@@ -42,7 +80,7 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Mobile No
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-password" type="number" placeholder="Mobile No"></input>
+              <input ref={mobileNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No"></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3">
@@ -50,14 +88,14 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Year
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-city" type="number" placeholder="Year"></input>
+              <input ref={year} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Year"></input>
             </div>
             <div className="w-full md:w-1/2 px-3 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Branch
               </label>
               <div className="relative">
-                <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-state">
+                <select ref={branch} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-state">
                   <option>Pharma</option>
                   <option>Technology</option>
                   <option>Management</option>
@@ -71,14 +109,14 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Room no
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="number" placeholder="103"></input>
+              <input ref={roomNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="number" placeholder="103"></input>
             </div>
 
             <div className="w-full sm:my-6 px-3 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Reason
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="text" placeholder=""></input>
+              <input ref={reason} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="text" placeholder=""></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mt-3">
@@ -86,7 +124,7 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Parents Mobile No*
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No"></input>
+              <input ref={parentsNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No"></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mt-3">
@@ -94,7 +132,7 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 From Date
               </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
+              <input ref={fromDate} className="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
                 type="date" placeholder=""></input>
             </div>
           </div>
@@ -103,7 +141,7 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 To Date
               </label>
-              <input className="appearance-none block w-full bg-gray-200  text-gray-400 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
+              <input ref={toDate} className="appearance-none block w-full bg-gray-200  text-gray-400 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
                 type="date" placeholder="Date" ></input>
             </div>
           </div>
