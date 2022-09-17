@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import { dateParser } from '../../utils/helper'
-
+import Head from 'next/head'
 import Spinner from "../../components/Spinner"
 import Error from '../../components/Error'
 import PassDetails from '../../components/PassDetails'
@@ -19,6 +18,9 @@ export default function CheckStaus() {
     const { data, error } = useSWR(url, fetcher)
     return (
         <div>
+            <Head>
+                <title>Status of your Token</title>
+            </Head>
             {(data) ? ((data.msg) ? <Error /> : <PassDetails data={data} />) : <Spinner />}
         </div>
     )

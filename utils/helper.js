@@ -9,3 +9,4 @@ export function dateParser(stringDate) {
 export function createToken() {
     return nanoid(6)
 }
+

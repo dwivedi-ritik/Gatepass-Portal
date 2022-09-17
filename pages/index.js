@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 
 import Modal from '../components/Modal.js'
 import Spinner from '../components/Spinner.js'
-import { dateParser, createToken } from '../utils/helper.js'
+import { dateParser, createToken, APP_ADDR } from '../utils/helper.js'
 import { gatePassStatus } from '../utils/constants.js'
 
 export default function Home() {
@@ -48,7 +48,6 @@ export default function Home() {
     setShowSpinner(false)
     setShowModel(true)
   }
-
   return (
     <div>
       <Head>
@@ -70,9 +69,9 @@ export default function Home() {
           <div className="flex flex-wrap -mx-3 my-4">
             <div className="w-full md:w-1/2 px-3 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                First Name
+                First Name*
               </label>
-              <input ref={firstname} className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 " type="text" placeholder="firstname"></input>
+              <input ref={firstname} className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 " type="text" placeholder="First Name" required></input>
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
@@ -84,9 +83,9 @@ export default function Home() {
           <div className="flex flex-wrap -mx-3">
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                Mobile No
+                Mobile No*
               </label>
-              <input ref={mobileNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No"></input>
+              <input ref={mobileNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No" required></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3">
@@ -94,7 +93,7 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Year
               </label>
-              <input ref={year} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Year"></input>
+              <input ref={year} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Year" required></input>
             </div>
             <div className="w-full md:w-1/2 px-3 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
@@ -115,14 +114,14 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Room no
               </label>
-              <input ref={roomNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="number" placeholder="103"></input>
+              <input ref={roomNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="number" placeholder="103" ></input>
             </div>
 
             <div className="w-full sm:my-6 px-3 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Reason
               </label>
-              <input ref={reason} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" id="grid-zip" type="text" placeholder=""></input>
+              <input ref={reason} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="text" placeholder=""></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mt-3">
@@ -130,25 +129,25 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Parents Mobile No*
               </label>
-              <input ref={parentsNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No"></input>
+              <input ref={parentsNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Parents No" required ></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mt-3">
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                From Date
+                From Date*
               </label>
               <input ref={fromDate} className="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
-                type="date" placeholder=""></input>
+                type="date" placeholder="" required></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 my-3">
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                To Date
+                To Date*
               </label>
               <input ref={toDate} className="appearance-none block w-full bg-gray-200  text-gray-400 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
-                type="date" placeholder="Date" ></input>
+                type="date" placeholder="Date" required></input>
             </div>
           </div>
           <div className='mt-3 flex justify-between items-center gap-3'>
