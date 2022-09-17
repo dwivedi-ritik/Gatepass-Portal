@@ -17,7 +17,7 @@ export default function adminApproveds(props) {
                 <title>Apporved Passes</title>
             </Head>
             <div className="flex">
-                <SideNav />
+                <SideNav elName={"approveds"} />
                 <div className="w-full bg-gray-50">
                     <div className="mx-4">
                         <AdminNav />

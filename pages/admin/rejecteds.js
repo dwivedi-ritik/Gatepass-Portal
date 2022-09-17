@@ -13,10 +13,10 @@ export default function adminRejecteds(props) {
     return (
         <div>
             <Head>
-                <title>Apporved Passes</title>
+                <title>Rejected Passes</title>
             </Head>
             <div className="flex">
-                <SideNav />
+                <SideNav elName={"rejecteds"} />
                 <div className="w-full bg-gray-50">
                     <div className="mx-4">
                         <AdminNav />

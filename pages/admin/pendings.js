@@ -14,10 +14,10 @@ export default function adminPendings(props) {
     return (
         <div>
             <Head>
-                <title>Apporved Passes</title>
+                <title>Pending Passes</title>
             </Head>
             <div className="flex">
-                <SideNav />
+                <SideNav elName={"pendings"} />
                 <div className="w-full bg-gray-50">
                     <div className="mx-4">
                         <AdminNav />
