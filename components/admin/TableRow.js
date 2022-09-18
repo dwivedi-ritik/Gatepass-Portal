@@ -22,8 +22,8 @@ export default function TableRow(props) {
                 {props.data.status.toUpperCase()}
             </td>
             <td className="py-4 font-semibold">
-                <a href="#" class="text-white bg-indigo-500 hover:bg-indigo-700  font-medium rounded-lg text-xs px-2 py-1 mr-2 mb-2 ">Approve</a>
-                <a href="#" class="text-white bg-red-500 hover:bg-red-700  font-medium rounded-lg text-xs px-2 py-1 mr-2 mb-2 ">Reject</a>
+                <a href="#" className="text-white bg-indigo-500 hover:bg-indigo-700  font-medium rounded-lg text-xs px-2 py-1 mr-2 mb-2 ">Approve</a>
+                <a href="#" className="text-white bg-red-500 hover:bg-red-700  font-medium rounded-lg text-xs px-2 py-1 mr-2 mb-2 ">Reject</a>
             </td>
         </tr>
     )

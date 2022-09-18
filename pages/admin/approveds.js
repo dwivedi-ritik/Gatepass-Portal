@@ -1,5 +1,8 @@
 import React from "react";
 import Head from "next/head";
+
+import { getSession } from "next-auth/react";
+
 import SideNav from "../../components/admin/SideNav";
 import AdminNav from "../../components/admin/AdminNav";
 
@@ -68,7 +71,7 @@ export default function adminApproveds(props) {
                                     </thead>
                                     <tbody>
                                         {props.data.map(obj => {
-                                            return <TableRow data={obj} />
+                                            return <TableRow data={obj} id={obj.token} />
                                         })}
 
                                     </tbody>
@@ -84,7 +87,16 @@ export default function adminApproveds(props) {
     )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+    const session = await getSession({ req: context.req })
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/admin/login",
+                permanent: false
+            }
+        }
+    }
     await dbConnect()
     const allCollections = await GatePass.find({ status: gatePassStatus.APPROVED })
 

@@ -1,4 +1,6 @@
 import Head from "next/head"
+import { getSession } from "next-auth/react"
+
 import SideNav from "../../components/admin/SideNav"
 import AdminOverview from "../../components/admin/AdminOverview"
 
@@ -16,3 +18,18 @@ export default function adminHome() {
         </div>
     )
 }
+
+export async function getServerSideProps(context) {
+    const session = await getSession({ req: context.req })
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/admin/login",
+                permanent: false
+            }
+        }
+    }
+    return {
+        props: {}
+    }
+} 

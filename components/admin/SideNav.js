@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 
+import { signOut } from "next-auth/react";
+
 export default function SideNav(props) {
     useEffect(() => {
         const { elName } = props
-        console.log(elName)
         const el = document.querySelector(`.${elName}`)
         el.classList.add("border-l-4")
         el.classList.add("bg-gray-700")
 
     }, [])
+    const signOutHandler = async () => {
+        await signOut()
+    }
     return (
 
         <div className="side-nav w-1/4 h-screen max-h-auto bg-gray-800 md:w-1/6">
@@ -49,7 +53,7 @@ export default function SideNav(props) {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                     </svg>
 
-                    <a className="font-medium text-gray-400 cursor-pointer ">Logout</a>
+                    <a className="font-medium text-gray-400 cursor-pointer" onClick={signOutHandler}>Logout</a>
                 </div>
             </div>
         </div>
