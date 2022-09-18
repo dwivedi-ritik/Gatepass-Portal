@@ -23,7 +23,7 @@ export default function adminRejecteds(props) {
                         <div className="mt-12 h-auto w-full rounded border bg-white">
                             <div className="flex justify-between mx-6 my-4">
                                 <div className="font-medium">
-                                    <p className="text-xs text-gray-800 font-semibold">Apporved Passes</p>
+                                    <p className="text-xs text-gray-800 font-semibold">Rejected Passes</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
