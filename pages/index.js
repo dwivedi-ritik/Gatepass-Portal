@@ -77,7 +77,7 @@ export default function Home() {
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                 Last Name
               </label>
-              <input ref={lastname} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="text" placeholder="lastname"></input>
+              <input ref={lastname} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="text" placeholder="Last Name"></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3">
