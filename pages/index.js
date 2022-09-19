@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 
 import Modal from '../components/Modal.js'
 import Spinner from '../components/Spinner.js'
+import NavBar from '../components/NavBar.js'
 import { dateParser, createToken, APP_ADDR } from '../utils/helper.js'
 import { gatePassStatus } from '../utils/constants.js'
 
@@ -55,11 +56,12 @@ export default function Home() {
         <meta lang='en'></meta>
         <meta description='getpass form'></meta>
       </Head>
+      <NavBar />
       {showModel ? <Modal token={token} passUrl={`http://localhost:3000/status/${token}`} /> : null}
       {showSpinner ? <Spinner /> : null}
       <div className='flex items-center justify-center mt-12 md:mt-8'>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
-        <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Get Pass Form </p>
+        <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Gate Pass Form </p>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
       </div>
       <p className='italic text-xs text-center text-gray-700'>Fill add all the details carefully</p>
@@ -152,16 +154,17 @@ export default function Home() {
           </div>
           <div className='mt-3 flex justify-between items-center gap-3'>
             <div className='flex  items-center gap-1'>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
+              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
-              <a className=' text-indigo-600 tracking-wide text-xs'>Back to home</a>
+              <a className=' text-indigo-600 tracking-wide text-xs'>Back to home</a> */}
             </div>
             <button className="bg-transparent hover:bg-indigo-700 text-indigo-700 font-semibold hover:text-white py-2 px-4 border border-indigo-500 hover:border-transparent rounded" type='submit' >
               Send Request
             </button>
           </div>
         </form>
+
       </div>
     </div >
   )

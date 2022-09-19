@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Spinner from "../../components/Spinner"
 import Error from '../../components/Error'
 import PassDetails from '../../components/PassDetails'
+import NavBar from '../../components/NavBar'
 
 const fetcher = (...args) => fetch(...args, {
     method: "GET"
@@ -21,6 +22,7 @@ export default function CheckStaus() {
             <Head>
                 <title>Status of your Token</title>
             </Head>
+            <NavBar />
             {(data) ? ((data.msg) ? <Error /> : <PassDetails data={data} />) : <Spinner />}
         </div>
     )

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AdminNav from "./AdminNav";
+import ShowChart from "./ShowChart";
+
+
 export default function AdminOverview() {
     let [dashboard, setDashboard] = useState({})
     useEffect(() => {
@@ -33,25 +36,26 @@ export default function AdminOverview() {
                 </div>
                 <div className="w-full h-96 border bg-white rounded mt-3 ">
 
-                    <div className="flex justify-between">
+                    <div className="flex items-center justify-between">
                         <div className="mt-4 ml-4">
                             <p className="text-lg font-semibold text-gray-800">Total Requests</p>
-                            <p className="text-xs text-gray-400">as of 25 May 2019, 09:41 PM</p>
+                            <p className="text-xs text-gray-400">as of {new Date().toLocaleString()}</p>
+                            <ShowChart />
                         </div>
                         <div className="flex flex-col mt-4 mr-4">
-                            <div className="h-20 w-44 border flex flex-col items-center justify-center">
+                            <div className="h-20 w-96 border flex flex-col items-center justify-center">
                                 <p className="text-sm text-gray-400">Resolved</p>
                                 <p className="text-lg font-semibold">{dashboard.rejectCount + dashboard.approveCount}</p>
                             </div>
-                            <div className="h-20 w-44 border flex flex-col items-center justify-center">
+                            <div className="h-20 w-96 border flex flex-col items-center justify-center">
                                 <p className="text-sm text-gray-400">Received</p>
                                 <p className="text-sm font-semibold">{dashboard.pendingCount + dashboard.approveCount + dashboard.rejectCount}</p>
                             </div>
-                            <div className="h-20 w-44 border flex flex-col items-center justify-center">
+                            <div className="h-20 w-96 border flex flex-col items-center justify-center">
                                 <p className="text-sm text-gray-400">Average Time</p>
                                 <p className="text-sm font-semibold">12hr</p>
                             </div>
-                            <div className="h-20 w-44 border flex flex-col items-center justify-center">
+                            <div className="h-20 w-96 border flex flex-col items-center justify-center">
                                 <p className="text-sm text-gray-400">Approval Ratio</p>
                                 <p className="text-sm font-semibold">{(dashboard.pendingCount / dashboard.approveCount) * 100}%</p>
                             </div>

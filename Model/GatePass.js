@@ -39,7 +39,11 @@ const gatePass = Schema({
     token: {
         type: String
     }
-})
+},
+    {
+        timestamps: true
+
+    })
 
 module.exports = mongoose.models.GetPass || mongoose.model('GetPass', gatePass);
 

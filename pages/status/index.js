@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+
+import NavBar from "../../components/NavBar";
+
 export default function Status() {
     const tokenId = useRef("")
     const router = useRouter()
@@ -14,13 +17,14 @@ export default function Status() {
                 <title>Check status of your token</title>
                 <meta lang="en"></meta>
             </Head>
-            <div className='flex items-center justify-center mt-12 md:mt-8'>
+            <NavBar />
+            {/* <div className='flex items-center justify-center mt-12 md:mt-8'>
                 <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
-                <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Get Pass Form </p>
+                <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Gate Pass Form </p>
                 <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
             </div>
-            <p className='italic text-xs text-center text-gray-700'>Fill add all the details carefully</p>
-            <form className="w-full flex flex-wrap justify-center items-center mt-12 gap-2">
+            <p className='italic text-xs text-center text-gray-700'>Fill add all the details carefully</p> */}
+            <form className="w-full flex flex-wrap justify-center items-center mt-24 gap-2">
                 <div className="md:w-1/2 w-3/4">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                         Add Your Token

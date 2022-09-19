@@ -15,7 +15,7 @@ export default function SideNav(props) {
     }
     return (
 
-        <div className="side-nav w-1/4 h-screen max-h-auto bg-gray-800 md:w-1/6">
+        <div className="side-nav w-1/4 h-screen max-h-auto bg-gray-800 md:w-1/5">
             <div className="flex justify-center pt-3">
                 <p className="font-bold uppercase text-gray-300">Admin Portal</p>
             </div>

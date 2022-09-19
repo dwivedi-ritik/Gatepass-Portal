@@ -4,6 +4,7 @@ import React from "react";
 import { getSession } from "next-auth/react";
 
 import AdminLogin from "../../components/admin/AdminLogin";
+import NavBar from "../../components/NavBar";
 
 export default function adminLogin() {
     return (
@@ -11,6 +12,7 @@ export default function adminLogin() {
             <Head>
                 <title>Admin Login Page</title>
             </Head>
+            <NavBar />
             <AdminLogin />
         </div>
     )

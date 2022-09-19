@@ -10,3 +10,9 @@ export function createToken() {
     return nanoid(6)
 }
 
+export function getMonthByStringDate(stringDate) {
+    let tempDate = Date.parse(stringDate)
+    let date = new Date(tempDate)
+    return date.getMonth()
+}
+
