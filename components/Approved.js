@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { useQRCode } from 'next-qrcode'
 export default function Pending(props) {
     const { Image } = useQRCode()
@@ -9,7 +10,9 @@ export default function Pending(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <a className=' text-indigo-600 tracking-wide text-xs' href="/">Back to home</a>
+                    <Link href="/">
+                        <a className=' text-indigo-600 tracking-wide text-xs' >Back to home</a>
+                    </Link>
                 </div>
             </div>
             <div className='w-3/4 md:w-1/3 h-auto mt-24 mx-auto'>

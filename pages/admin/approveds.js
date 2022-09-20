@@ -71,7 +71,7 @@ export default function adminApproveds(props) {
                                     </thead>
                                     <tbody>
                                         {props.data.map(obj => {
-                                            return <TableRow data={obj} id={obj.token} />
+                                            return <TableRow data={obj} key={obj._id} />
                                         })}
 
                                     </tbody>

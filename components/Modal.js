@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 export default function Modal(props) {
     return (
@@ -30,16 +31,22 @@ export default function Modal(props) {
                                 <p className='bg-gray-100 px-3 py-2 rounded-md text-gray-600 '>{props.token}</p>
                             </div>
                             <div className='w-full flex justify-center '>
-                                <a className='text-indigo-600 underline italic text-xs' href={props.passUrl}>{props.passUrl}</a>
+                                <Link  href={props.passUrl}>
+                                    <a className='text-indigo-600 underline italic text-xs'>{props.passUrl}</a>
+                                </Link>
                             </div>
                         </div>
                         <div className="bg-gray-100 px-4 py-3 flex justify-between flex-row-reverse">
-                            <a type="button" href="/status" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700  sm:text-sm">Check Status</a>
+                            <Link href="/status">
+                                <a type="button"  className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700  sm:text-sm">Check Status</a>
+                            </Link>
                             <div className='flex  items-center gap-1 cursor-pointer' >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                                 </svg>
-                                <a className='text-indigo-600 tracking-wide text-xs' href="/">Create new pass</a>
+                                <Link href="/">
+                                    <a className='text-indigo-600 tracking-wide text-xs'>Create new pass</a>
+                                </Link>
                             </div>
                         </div>
                     </div>
