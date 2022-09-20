@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import AdminNav from "./AdminNav";
 import ShowChart from "./ShowChart";
 
+import Spinner from "../Spinner"
 
 export default function AdminOverview() {
     let [dashboard, setDashboard] = useState({})
+
+    let [showSpinner , setShowSpinner] = useState(true)
     useEffect(() => {
         fetch("/api/gatepass/getPassCount")
             .then(res => res.json())
-            .then(data => setDashboard(data))
+            .then(respo => {
+                setDashboard(respo)
+                setShowSpinner(false)
+            })
     }, [])
 
 
     return (
+        <>
+        {!showSpinner && 
         <div className="w-full bg-gray-50">
             <div className="mx-4">
                 <AdminNav />
@@ -65,5 +73,7 @@ export default function AdminOverview() {
 
             </div>
         </div>
+}
+</>
     )
 }

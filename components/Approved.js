@@ -35,14 +35,7 @@ export default function Pending(props) {
                     <p className='text-green-500 italic  text-lg font-semibold text-center'>Approved</p>
                     <p className='text-xs italic text-center mt-3'>This Token will be only be valid before Arrival Date</p>
                 </div>
-                <div className='w-full flex justify-center my-4'>
-                    <ul className='list-disc text-xs italic text-gray-700'>
-                        <li>Only Approved Pass will be valid</li>
-                        <li>Show this to the gate person</li>
-                        <li>Rahul Bhai Bantai Rapper</li>
-                    </ul>
-
-                </div>
+               
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
-import { nanoid } from "nanoid"
-
+import { customAlphabet } from 'nanoid'
 export function dateParser(stringDate) {
     let tempDate = Date.parse(stringDate)
     let date = new Date(tempDate)
@@ -7,7 +6,8 @@ export function dateParser(stringDate) {
 }
 
 export function createToken() {
-    return nanoid(6)
+    const nanoid = customAlphabet('1234567890', 6)
+    return nanoid()
 }
 
 export function getMonthByStringDate(stringDate) {

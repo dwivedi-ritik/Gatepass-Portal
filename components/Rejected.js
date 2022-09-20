@@ -34,7 +34,6 @@ export default function Pending(props) {
                 </div>
                 <div className='px-3 py-4'>
                     <p className='text-red-500 italic  text-lg font-semibold text-center'>Rejected</p>
-                    <p className='text-xs italic text-center mt-3'>This Token will be only be valid before Arrival Date</p>
                 </div>
             </div>
         </div>
