@@ -1,6 +1,6 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import { NEXTAUTH_SECRET }from "../../../utils/constants"
 export default NextAuth({
     session: {
         jwt: true
@@ -17,5 +17,6 @@ export default NextAuth({
                 }
             }
         })
-    ]
+    ],
+    secret: NEXTAUTH_SECRET
 })

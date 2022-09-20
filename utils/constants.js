@@ -4,6 +4,7 @@ export const gatePassStatus = {
     APPROVED: "approved"
 }
 
+export  const NEXTAUTH_SECRET = "3aaAigN0x8IpUKMohN4G1f8mE7ZWedD6qenyYzY6x2Q="
 export const chartjsData = {
     labels: [
         "Jan",
