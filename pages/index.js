@@ -57,7 +57,7 @@ export default function Home() {
         <meta description='getpass form'></meta>
       </Head>
       <NavBar />
-      {showModel ? <Modal token={token} passUrl={`http://localhost:3000/status/${token}`} /> : null}
+      {showModel ? <Modal token={token} passUrl={`https://gepass-portal.vercel.app/status/${token}`} /> : null}
       {showSpinner ? <Spinner /> : null}
       <div className='flex items-center justify-center mt-12 md:mt-8'>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
