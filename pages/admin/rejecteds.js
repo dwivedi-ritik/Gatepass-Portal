@@ -43,7 +43,7 @@ export default function adminRejecteds(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto mx-4 shadow-md sm:rounded-lg mt-8 max-h-64">
+                    <div className="overflow-x-auto mx-4 shadow-md sm:rounded-lg mt-8">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -97,7 +97,7 @@ export async function getServerSideProps(context) {
         }
     }
     await dbConnect()
-    const allCollections = await GatePass.find({ status: gatePassStatus.REJECTED })
+    const allCollections = await GatePass.find({ status: gatePassStatus.REJECTED }).sort({ "createdAt": "desc" })
 
     return {
         props: {

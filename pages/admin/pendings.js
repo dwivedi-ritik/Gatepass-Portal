@@ -44,7 +44,7 @@ export default function adminPendings(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 max-h-64 mx-4">
+                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -98,7 +98,7 @@ export async function getServerSideProps(context) {
         }
     }
     await dbConnect()
-    const allCollections = await GatePass.find({ status: gatePassStatus.PENDING })
+    const allCollections = await GatePass.find({ status: gatePassStatus.PENDING }).sort({ "createdAt": "desc" })
 
     return {
         props: {

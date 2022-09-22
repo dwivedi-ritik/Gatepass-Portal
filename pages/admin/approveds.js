@@ -44,7 +44,7 @@ export default function adminApproveds(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-auto max-h-64">
+                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-auto">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -98,7 +98,7 @@ export async function getServerSideProps(context) {
         }
     }
     await dbConnect()
-    const allCollections = await GatePass.find({ status: gatePassStatus.APPROVED })
+    const allCollections = await GatePass.find({ status: gatePassStatus.APPROVED }).sort({ "createdAt": "desc" })
 
     return {
         props: {
