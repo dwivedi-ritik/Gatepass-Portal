@@ -9,7 +9,8 @@ export default function Status() {
     const tokenId = useRef("")
     const router = useRouter()
 
-    const getTokenData = () => {
+    const getTokenData = (e) => {
+        e.preventDefault()
         router.push("/status/" + tokenId.current.value)
     }
     return (
@@ -25,7 +26,7 @@ export default function Status() {
                 <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
             </div>
             <p className='italic text-xs text-center text-gray-700'>Fill add all the details carefully</p> */}
-            <form className="w-full flex flex-wrap justify-center items-center mt-24 gap-2">
+            <form className="w-full flex flex-wrap justify-center items-center mt-24 gap-2" onSubmit={getTokenData}>
                 <div className="md:w-1/2 w-3/4">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                         Add Your Token
