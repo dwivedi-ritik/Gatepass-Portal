@@ -6,6 +6,7 @@ import { getSession } from "next-auth/react";
 import SideNav from "../../components/admin/SideNav";
 import AdminNav from "../../components/admin/AdminNav";
 import TableRow from "../../components/admin/TableRow"
+import DownloadData from "../../components/admin/DownloadData"
 
 import GatePass from "../../Model/GatePass"
 import dbConnect from "../../lib/dbConnect"
@@ -21,7 +22,7 @@ export default function adminPendings(props) {
             </Head>
             <div className="flex">
                 <SideNav elName={"pendings"} />
-                <div className="w-full bg-gray-50">
+                <div className="w-full ">
                     <div className="mx-4">
                         <AdminNav title={"Pending Passes"} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
@@ -79,7 +80,9 @@ export default function adminPendings(props) {
                             </tbody>
                         </table>
                     </div>
-
+                    <div className="mt-12 mx-4">
+                        <DownloadData />
+                    </div>
                 </div>
             </div>
         </div>
