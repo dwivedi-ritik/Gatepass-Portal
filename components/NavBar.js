@@ -32,20 +32,20 @@ export default function NavBar() { //TODOs Implement later
                     <svg onClick={toggleNav} className="w-6 h-6 sm:hidden" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
                 </div>
                 <div class="hidden flex justify-start items-center w-full sm:hidden" id="navbar-cta">
-                    <ul class="flex flex-col py-4 mt-2 rounded-lg  ">
+                    <ul class="flex flex-col py-4 mt-2 rounded-lg w-full">
                         <li>
                             <Link href="/">
-                                <a  class="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Request</a>
+                                <a class="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Request</a>
                             </Link>
                         </li>
                         <li>
                             <Link href="/status">
-                                <a  class="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Status</a>
+                                <a class="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Status</a>
                             </Link>
                         </li>
                         <li>
                             <Link href="/admin/login">
-                                <a  class="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Admin</a>
+                                <a class="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Admin</a>
                             </Link>
                         </li>
                         <li>

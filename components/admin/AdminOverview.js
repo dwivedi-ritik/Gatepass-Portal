@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminNav from "./AdminNav";
 
 // Chart js is having issue in production for now i have to remove it from producton
-import ShowChart from "./ShowChart";
+// import ShowChart from "./ShowChart";
 
 import Spinner from "../Spinner"
 
@@ -54,7 +54,7 @@ export default function AdminOverview() {
                             <p className="text-xs text-gray-400">as of {new Date().toLocaleString()}</p>
 
 
-                            <ShowChart />
+                            {/* <ShowChart /> */}
                         </div>
                         <div className="grid grid-cols-2 justify-center md:grid-cols-1 md:w-1/2 mt-4">
                             <div className="h-20  border flex flex-col items-center justify-center">
