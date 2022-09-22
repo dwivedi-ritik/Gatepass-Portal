@@ -23,7 +23,7 @@ export default function adminApproveds(props) {
                 <SideNav elName={"approveds"} />
                 <div className="w-full bg-gray-50">
                     <div className="mx-4">
-                        <AdminNav />
+                        <AdminNav title={"Approve Passes"} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
                             <div className="flex justify-between mx-6 my-4">
                                 <div className="font-medium">
@@ -41,45 +41,45 @@ export default function adminApproveds(props) {
 
                                 </div>
                             </div>
-
-                            <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-8 mod">
-                                <table className="w-full text-sm text-left text-gray-500 ">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                                        <tr>
-                                            <th scope="col" className="py-3 px-6">
-                                                Name
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Year
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Room No
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Mobile No
-                                            </th>
-                                            <th scope="col" className="py-3 px-6">
-                                                Parents No
-                                            </th>
-
-                                            <th scope="col" className="py-3 px-6">
-                                                Status
-                                            </th>
-                                            <th scope="col" className="py-3 px-4">
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {props.data.map(obj => {
-                                            return <TableRow data={obj} key={obj._id} />
-                                        })}
-
-                                    </tbody>
-                                </table>
-                            </div>
-
                         </div>
                     </div>
+
+                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-auto max-h-64">
+                        <table className="w-full text-sm text-left text-gray-500 ">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" className="py-3 px-6">
+                                        Name
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Year
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Room No
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Mobile No
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Parents No
+                                    </th>
+
+                                    <th scope="col" className="py-3 px-6">
+                                        Status
+                                    </th>
+                                    <th scope="col" className="py-3 px-4">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {props.data.map(obj => {
+                                    return <TableRow data={obj} key={obj._id} />
+                                })}
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
