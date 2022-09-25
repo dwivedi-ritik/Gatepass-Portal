@@ -2,6 +2,7 @@ import GatePass from "../../../Model/GatePass"
 import { getMonthByStringDate } from "../../../utils/helper"
 import { gatePassStatus } from "../../../utils/constants"
 
+
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
         return res.status(403).send("Method not Allowed")

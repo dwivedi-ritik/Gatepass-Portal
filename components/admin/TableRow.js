@@ -1,11 +1,47 @@
 import React, { useState } from "react"
 
+import { mailTemplateForApproval, mailTemplateForRejection, mailTextForApproval, mailTextForRejection } from "../../utils/mailTemplates"
+
 import { gatePassStatus } from "../../utils/constants"
+
+import Spinner from "../Spinner"
+
+const handleMailingForApproval = async (tokenId, receiver) => {
+    const mailBody = mailTextForApproval(tokenId, 'https://gatepass.vercel.app/status/' + tokenId)
+    const mailHeader = mailTemplateForApproval(mailBody, receiver)
+
+    const mailRes = await fetch('/api/gatepass/sendMail', {
+        method: 'POST',
+        body: JSON.stringify(mailHeader)
+    })
+    if (mailRes.status !== 200) {
+        console.log("Sending mail was unsuccesfull")
+    } else {
+        console.log("Mail was sent succesfully")
+    }
+}
+
+const handleMailingForRejection = async (tokenId, receiver) => {
+    const mailBody = mailTextForRejection(tokenId)
+    const mailHeader = mailTemplateForRejection(mailBody, receiver)
+
+    const mailRes = await fetch('/api/gatepass/sendMail', {
+        method: 'POST',
+        body: JSON.stringify(mailHeader)
+    })
+    if (mailRes.status !== 200) {
+        console.log("Sending mail was unsuccesfull")
+    } else {
+        console.log("Mail was sent succesfully")
+    }
+}
+
 
 export default function TableRow(props) {
     let [rowData, setRowData] = useState(props.data)
-
+    let [showSpinner, setShowSpinner] = useState(false)
     const approveStatusHandler = async () => {
+        setShowSpinner(true)
         const res = await fetch("/api/gatepass/changeStatus", {
             method: "PATCH",
             body: JSON.stringify({
@@ -13,12 +49,20 @@ export default function TableRow(props) {
                 status: gatePassStatus.APPROVED
             })
         })
+
+        if (props.data.email) {
+            handleMailingForApproval(props.data.token, props.data.email)
+        }
+
         const newRowData = await res.json()
 
         setRowData(newRowData)
+        setShowSpinner(false)
+
     }
 
     const rejectStatusHandler = async () => {
+        setShowSpinner(true)
         const res = await fetch("/api/gatepass/changeStatus", {
             method: "PATCH",
             body: JSON.stringify({
@@ -26,12 +70,18 @@ export default function TableRow(props) {
                 status: gatePassStatus.REJECTED
             })
         })
+
+        if (props.data.email) {
+            handleMailingForRejection(props.data.token, props.data.email)
+        }
         const newRowData = await res.json()
 
         setRowData(newRowData)
+        setShowSpinner(false)
     }
     return (
         <tr className="bg-white border-b">
+            {showSpinner && <Spinner />}
             <th scope="row" className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900">
                 {rowData.firstname + " " + rowData.lastname}
             </th>

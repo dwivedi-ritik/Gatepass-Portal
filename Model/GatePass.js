@@ -12,6 +12,9 @@ const gatePass = Schema({
     mobileNo: {
         type: Number
     },
+    email: {
+        type: String
+    },
     parentsNo: {
         type: Number
     },

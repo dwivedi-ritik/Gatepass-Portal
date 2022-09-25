@@ -7,6 +7,24 @@ import NavBar from '../components/NavBar.js'
 import { dateParser, createToken, APP_ADDR } from '../utils/helper.js'
 import { gatePassStatus } from '../utils/constants.js'
 
+import { mailTemplateForNotification, mailTextForNotification } from '../utils/mailTemplates.js'
+
+const handleMailingForNotification = async (tokenId, receiver) => {
+  const mailBody = mailTextForNotification(tokenId)
+  const mailHeader = mailTemplateForNotification(mailBody, receiver)
+
+  const mailRes = await fetch('/api/gatepass/sendMail', {
+    method: 'POST',
+    body: JSON.stringify(mailHeader)
+  })
+  if (mailRes.status !== 200) {
+    console.log("Sending mail was unsuccesfull")
+  } else {
+    console.log("Mail was sent succesfully")
+  }
+}
+
+
 export default function Home() {
 
   let [showModel, setShowModel] = useState(false)
@@ -18,6 +36,7 @@ export default function Home() {
   const branch = useRef(null)
   const year = useRef(null)
   const mobileNo = useRef(null)
+  const email = useRef(null)
   const parentsNo = useRef(null)
   const roomNo = useRef(null)
   const reason = useRef(null)
@@ -26,6 +45,8 @@ export default function Home() {
 
   const formSubmit = async (e) => {
     e.preventDefault()
+    const token = createToken()
+    handleMailingForNotification(token, email.current.value)
     setShowSpinner(true)
     let out = await fetch("/api/gatepass/add", {
       method: "POST",
@@ -37,11 +58,12 @@ export default function Home() {
         reason: reason.current.value,
         status: gatePassStatus.PENDING,
         mobileNo: mobileNo.current.value,
+        email: email.current.value,
         parentsNo: parentsNo.current.value,
         roomNo: roomNo.current.value,
         arrival: dateParser(toDate.current.value),
         departure: dateParser(fromDate.current.value),
-        token: createToken()
+        token: token
       })
     })
     const resJson = await out.json()
@@ -88,6 +110,14 @@ export default function Home() {
                 Mobile No*
               </label>
               <input ref={mobileNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No" required></input>
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                Email*
+              </label>
+              <input ref={email} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="email" placeholder="Your mail for notification" required></input>
             </div>
           </div>
           <div className="flex flex-wrap -mx-3">
