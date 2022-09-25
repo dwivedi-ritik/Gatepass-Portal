@@ -10,12 +10,18 @@ export default function AdminOverview() {
     let [dashboard, setDashboard] = useState({})
 
     let [showSpinner, setShowSpinner] = useState(true)
+    let [pieChartData, setPieChartData] = useState([])
     useEffect(() => {
         fetch("/api/gatepass/getPassCount")
             .then(res => res.json())
             .then(respo => {
                 setDashboard(respo)
                 setShowSpinner(false)
+            })
+        fetch("/api/gatepass/getPassCount")
+            .then(res => res.json())
+            .then(data => {
+                setPieChartData([data.rejectCount, data.pendingCount, data.approveCount])
             })
     }, [])
 
@@ -54,7 +60,7 @@ export default function AdminOverview() {
                             <p className="text-xs text-gray-400">as of {new Date().toLocaleString()}</p>
 
 
-                            <ShowChart />
+                            <ShowChart arr={pieChartData} />
                         </div>
                         <div className="grid grid-cols-2 justify-center md:grid-cols-1 md:w-1/2 mt-12 md:mt-4">
                             <div className="h-20  border flex flex-col items-center justify-center">
