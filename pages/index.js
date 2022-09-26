@@ -13,15 +13,12 @@ const handleMailingForNotification = async (tokenId, receiver) => {
   const mailBody = mailTextForNotification(tokenId)
   const mailHeader = mailTemplateForNotification(mailBody, receiver)
 
-  const mailRes = await fetch('/api/gatepass/sendMail', {
+  fetch('/api/gatepass/sendMail', {
     method: 'POST',
     body: JSON.stringify(mailHeader)
   })
-  if (mailRes.status !== 200) {
-    console.log("Sending mail was unsuccesfull")
-  } else {
-    console.log("Mail was sent succesfully")
-  }
+    .then(res => res.json())
+    .then(console.log)
 }
 
 

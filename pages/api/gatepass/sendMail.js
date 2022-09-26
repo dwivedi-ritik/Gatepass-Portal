@@ -6,12 +6,13 @@ export default async function handler(req, res) { //TODOs Implement validation
     }
     const { to, subject, text } = JSON.parse(req.body)
     try {
-        sendMail({
+        const mailRes = await sendMail({
             to: to,
             subject: subject,
             text: text
         })
-        return res.status(200).send("Succes")
+        console.log(mailRes)
+        return res.json(mailRes)
     } catch (e) {
         res.status(500)
         console.log(e)
