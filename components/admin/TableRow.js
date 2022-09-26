@@ -6,34 +6,30 @@ import { gatePassStatus } from "../../utils/constants"
 
 import Spinner from "../Spinner"
 
-const handleMailingForApproval = async (tokenId, receiver) => {
+const handleMailingForApproval = (tokenId, receiver) => {
     const mailBody = mailTextForApproval(tokenId, 'https://gatepass.vercel.app/status/' + tokenId)
     const mailHeader = mailTemplateForApproval(mailBody, receiver)
 
-    const mailRes = await fetch('/api/gatepass/sendMail', {
+
+    fetch('/api/gatepass/sendMail', {
         method: 'POST',
         body: JSON.stringify(mailHeader)
     })
-    if (mailRes.status !== 200) {
-        console.log("Sending mail was unsuccesfull")
-    } else {
-        console.log("Mail was sent succesfully")
-    }
+        .then(res => res.json())
+        .then(console.log)
 }
 
-const handleMailingForRejection = async (tokenId, receiver) => {
+const handleMailingForRejection = (tokenId, receiver) => {
     const mailBody = mailTextForRejection(tokenId)
     const mailHeader = mailTemplateForRejection(mailBody, receiver)
 
-    const mailRes = await fetch('/api/gatepass/sendMail', {
+
+    fetch('/api/gatepass/sendMail', {
         method: 'POST',
         body: JSON.stringify(mailHeader)
     })
-    if (mailRes.status !== 200) {
-        console.log("Sending mail was unsuccesfull")
-    } else {
-        console.log("Mail was sent succesfully")
-    }
+        .then(res => res.json())
+        .then(console.log)
 }
 
 
