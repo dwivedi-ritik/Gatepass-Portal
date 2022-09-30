@@ -32,6 +32,18 @@ const handleMailingForRejection = (tokenId, receiver) => {
         .then(console.log)
 }
 
+const handleWebPushNotification = (tokenId, status) => {
+    fetch("/api/subscription/sendNotification", {
+        method: 'GET',
+        query: {
+            token: tokenId,
+            status: status
+        }
+    })
+        .then(res => console.log(res.status))
+        .catch(err => console.log(err))
+}
+
 
 export default function TableRow(props) {
     let [rowData, setRowData] = useState(props.data)
@@ -49,6 +61,8 @@ export default function TableRow(props) {
         if (props.data.email) {
             handleMailingForApproval(props.data.token, props.data.email)
         }
+
+        handleWebPushNotification(props.data.token, gatePassStatus.APPROVED)
 
         const newRowData = await res.json()
 
@@ -70,6 +84,9 @@ export default function TableRow(props) {
         if (props.data.email) {
             handleMailingForRejection(props.data.token, props.data.email)
         }
+
+        handleWebPushNotification(props.data.token, gatePassStatus.REJECTED)
+
         const newRowData = await res.json()
 
         setRowData(newRowData)

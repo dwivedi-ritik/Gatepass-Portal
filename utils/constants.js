@@ -6,6 +6,10 @@ export const gatePassStatus = {
 
 export const NEXTAUTH_SECRET = "3aaAigN0x8IpUKMohN4G1f8mE7ZWedD6qenyYzY6x2Q="
 
+export const VAPID_PUBLIC_KEY = "BGK8DfHpGCtn2QuR0kfuLkADePW58aN6GqZUEjA0E8F655rhuD1iCoUBVnSEcyjwkY5itHOG7-zVcDGsWexR0lc"
+
+export const VAPID_PRIVATE_KEY = "Xbo99ir3EHEvqrgWUA325hLkO0iCzK6kq7aBRzLnsNE"
+
 //Configuration of line chart is commented out
 
 // export const chartjsData = {

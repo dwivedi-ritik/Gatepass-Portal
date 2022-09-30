@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import Modal from '../components/Modal.js'
 import Spinner from '../components/Spinner.js'
 import NavBar from '../components/NavBar.js'
-import { dateParser, createToken, APP_ADDR } from '../utils/helper.js'
-import { gatePassStatus } from '../utils/constants.js'
+import { dateParser, createToken, APP_ADDR, urlBase64ToUint8Array } from '../utils/helper.js'
+import { gatePassStatus, VAPID_PUBLIC_KEY } from '../utils/constants.js'
 
 import { mailTemplateForNotification, mailTextForNotification } from '../utils/mailTemplates.js'
 
@@ -23,6 +23,28 @@ const handleMailingForNotification = async (tokenId, receiver) => {
 
 
 export default function Home() {
+
+  const subscriptionRef = useRef(null)
+  //Service worker registration
+  useEffect(() => {
+    (async () => {
+      try {
+        if ('serviceWorker' in navigator) {
+          const register = await navigator.serviceWorker.register('worker.js', {
+            scope: '/'
+          });
+
+          const subscription = await register.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+          });
+          subscriptionRef.current = subscription
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    })();
+  }, [])
 
   let [showModel, setShowModel] = useState(false)
   let [showSpinner, setShowSpinner] = useState(false)
@@ -43,7 +65,7 @@ export default function Home() {
   const formSubmit = async (e) => {
     e.preventDefault()
     const token = createToken()
-    handleMailingForNotification(token, email.current.value)
+    // handleMailingForNotification(token, email.current.value)
     setShowSpinner(true)
     let out = await fetch("/api/gatepass/add", {
       method: "POST",
@@ -65,9 +87,20 @@ export default function Home() {
     })
     const resJson = await out.json()
     setToken(resJson.token)
+
+    if (subscriptionRef.current) {
+      let subsRes = await fetch("/api/subscription/add", {
+        method: 'POST',
+        body: JSON.stringify({
+          token: token,
+          subscription: subscriptionRef.current
+        })
+      })
+    }
     setShowSpinner(false)
     setShowModel(true)
   }
+
   return (
     <div>
       <Head>
