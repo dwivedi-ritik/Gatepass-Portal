@@ -15,9 +15,9 @@ export default async function handler(req, res) {
         const { token, status } = JSON.parse(req.body)
 
         if (!token || !status) {
-            console.log(token, status)
             return res.status(400).send("Bad Request")
         }
+
         await dbConnect()
         const updatedCollection = await GatePass.findOneAndUpdate({ token: token },
             { $set: { status: status } },

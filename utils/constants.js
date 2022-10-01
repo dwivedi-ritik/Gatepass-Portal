@@ -10,6 +10,12 @@ export const VAPID_PUBLIC_KEY = "BGK8DfHpGCtn2QuR0kfuLkADePW58aN6GqZUEjA0E8F655r
 
 export const VAPID_PRIVATE_KEY = "Xbo99ir3EHEvqrgWUA325hLkO0iCzK6kq7aBRzLnsNE"
 
+export const maintenanceStatus = {
+    RESOLVED: 'resolved',
+    UNRESOLVED: 'unresolved',
+    IN_PROGRESS: 'in progress'
+}
+
 //Configuration of line chart is commented out
 
 // export const chartjsData = {

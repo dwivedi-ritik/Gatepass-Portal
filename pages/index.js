@@ -111,7 +111,7 @@ export default function Home() {
       <NavBar />
       {showModel ? <Modal token={token} passUrl={`https://gepass-portal.vercel.app/status/${token}`} setShowModel={setShowModel} /> : null}
       {showSpinner ? <Spinner /> : null}
-      <div className='flex items-center justify-center mt-12 md:mt-8'>
+      <div className='flex items-center justify-center mt-12 md:mt-8 '>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
         <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Gate Pass Form </p>
         <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>

@@ -43,7 +43,7 @@ export default function adminRejecteds(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto mx-4 shadow-md sm:rounded-lg mt-8">
+                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>

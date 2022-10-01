@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
-export default function Modal(props) {
+
+export default function MaintenanceModal(props) {
     return (
         <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div className="fixed inset-0 bg-gray-400 bg-opacity-75 backdrop-blur-sm transition-blur"></div>
+            <div className="fixed inset-0 bg-gray-400 bg-opacity-75 backdrop-blur-sm transition-blur "></div>
             <div className="fixed inset-0 z-10 overflow-y-auto">
                 <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
                     <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
@@ -15,26 +16,25 @@ export default function Modal(props) {
                                     </svg>
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 className="text-lg leading-6 text-gray-800 font-semibold" id="modal-title">Your Token is Generated</h3>
+                                    <h3 className="text-lg leading-6 text-gray-800 font-semibold" id="modal-title">Your Request has submitted</h3>
                                     <div className="mt-2">
-                                        <p className="text-sm text-gray-500">You can track your Get Pass Approval using this token</p>
+                                        <p className="text-sm text-gray-500">Now sit back and relax we will let you know when its resolved</p>
                                     </div>
                                     <ul className='mx-3 mt-3 text-start list-disc text-xs text-gray-500 tracking-wide'>
-                                        <li>Do not forget the token id</li>
-                                        <li>Valid token only those which are approved</li>
-                                        <li>Warden must have to approve your token</li>
-                                        <li>Track your pass using below link</li>
+                                        <li>Token id is for checking</li>
+                                        <li>You can track your progress by token</li>
+                                        <li>Token status is dynamic</li>
                                     </ul>
                                 </div>
                             </div>
                             <div className='my-3 w-full flex justify-center'>
                                 <p className='bg-gray-100 px-3 py-2 rounded-md text-gray-600 '>{props.token}</p>
                             </div>
-                            <div className='w-full flex justify-center '>
+                            {/* <div className='w-full flex justify-center '>
                                 <Link href={props.passUrl}>
                                     <a className='text-indigo-600 underline italic text-xs'>{props.passUrl}</a>
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="bg-gray-100 px-4 py-3 flex justify-between flex-row-reverse">
                             <Link href="/status">
