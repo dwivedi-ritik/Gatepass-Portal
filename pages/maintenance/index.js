@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar"
 import MaintenanceModal from "../../components/maitenance/MaintenanceModal"
 
 export default function MaintenanceForm(props) {
+    let [modalData, setModalData] = useState({})
     let [showModal, setShowModel] = useState(false)
 
     let title = useRef(null)
@@ -31,6 +32,7 @@ export default function MaintenanceForm(props) {
             })
             .then(res => res.json())
             .then(data => {
+                setModalData(data)
                 setShowModel(true)
                 console.log(data)
             })
@@ -44,7 +46,7 @@ export default function MaintenanceForm(props) {
                 </meta>
             </Head>
             <NavBar />
-            {showModal && <MaintenanceModal />}
+            {showModal && <MaintenanceModal data={modalData} />}
             <div className="flex justify-center mb-5">
                 <form className="w-full max-w-lg mx-5 sm:mx-0" onSubmit={handleSubmitEvent}>
                     <p className="block uppercase my-7 tracking-wide text-gray-700 text-md font-bold">Maintenance Details</p>

@@ -20,12 +20,6 @@ export default function Status() {
                 <meta lang="en"></meta>
             </Head>
             <NavBar />
-            {/* <div className='flex items-center justify-center mt-12 md:mt-8'>
-                <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
-                <p className='block uppercase tracking-wide text-gray-700 text-lg font-bold mx-3'>Gate Pass Form </p>
-                <div className='w-12 bg-gray-500 h-0.5 rounded-lg'></div>
-            </div>
-            <p className='italic text-xs text-center text-gray-700'>Fill add all the details carefully</p> */}
             <form className="w-full flex flex-wrap justify-center items-center mt-24 gap-2" onSubmit={getTokenData}>
                 <div className="md:w-1/2 w-3/4">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >

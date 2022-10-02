@@ -19,7 +19,7 @@ export default function NavBar() { //TODOs Implement later
                         <Link href="/">
                             <a className="hover:text-indigo-600 transition-colors">Gatepass</a>
                         </Link>
-                        <Link href="/maintenance/form">
+                        <Link href="/maintenance">
                             <a className="hover:text-indigo-600 transition-colors">Upkeep</a>
                         </Link>
                         <Link href="/status">
@@ -42,7 +42,7 @@ export default function NavBar() { //TODOs Implement later
                             </Link>
                         </li>
                         <li>
-                            <Link href="/maintenance/form">
+                            <Link href="/maintenance">
                                 <a className="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Upkeep</a>
                             </Link>
                         </li>

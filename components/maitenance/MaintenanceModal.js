@@ -28,13 +28,8 @@ export default function MaintenanceModal(props) {
                                 </div>
                             </div>
                             <div className='my-3 w-full flex justify-center'>
-                                <p className='bg-gray-100 px-3 py-2 rounded-md text-gray-600 '>{props.token}</p>
+                                <p className='bg-gray-100 px-3 py-2 rounded-md text-gray-600 '>{props.data.token}</p>
                             </div>
-                            {/* <div className='w-full flex justify-center '>
-                                <Link href={props.passUrl}>
-                                    <a className='text-indigo-600 underline italic text-xs'>{props.passUrl}</a>
-                                </Link>
-                            </div> */}
                         </div>
                         <div className="bg-gray-100 px-4 py-3 flex justify-between flex-row-reverse">
                             <Link href="/status">
