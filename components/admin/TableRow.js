@@ -33,12 +33,8 @@ const handleMailingForRejection = (tokenId, receiver) => {
 }
 
 const handleWebPushNotification = (tokenId, status) => {
-    fetch("/api/subscription/sendNotification", {
+    fetch(`/api/subscription/sendNotification?token=${tokenId}&status=${status}`, {
         method: 'GET',
-        query: {
-            token: tokenId,
-            status: status
-        }
     })
         .then(res => console.log(res.status))
         .catch(err => console.log(err))
