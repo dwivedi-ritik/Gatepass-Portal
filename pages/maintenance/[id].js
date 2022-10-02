@@ -1,10 +1,12 @@
-import MaintenanceStatus from "../../components/maitenance/MaintenanceStatus"
+import React from "react";
 import Head from "next/head"
+import { useRouter } from "next/router";
+import useSWR from "swr"
+
+import MaintenanceStatus from "../../components/maitenance/MaintenanceStatus"
 import NavBar from "../../components/NavBar"
 import Spinner from "../../components/Spinner";
 import Error from "../../components/Error";
-import { useRouter } from "next/router";
-import useSWR from "swr"
 
 
 const fetcher = (...args) => fetch(...args, {
@@ -12,7 +14,7 @@ const fetcher = (...args) => fetch(...args, {
 }).then(res => res.json())
 
 
-export default function status() {
+export default function CheckMaintenanceStatus() {
     const router = useRouter()
     const token = router.query.id;
 

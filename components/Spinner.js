@@ -3,7 +3,7 @@ import React from "react";
 export default function Spinner() {
     return (
         <div className="relative z-10 " aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div className="fixed inset-0 bg-white bg-opacity-75 transition-opacity"></div>
+            <div className="fixed inset-0 bg-white bg-opacity-75 transition-opacity backdrop-blur-sm"></div>
             <div className="fixed inset-0 z-10 overflow-y-auto">
                 <div className="flex justify-center h-screen items-center -my-12">
                     <div role="status">
