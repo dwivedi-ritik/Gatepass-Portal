@@ -25,6 +25,67 @@ a {
   height: 500px;
 }
 
+.unresolved {
+  background-color: aqua;
+  animation: unresolved 2s forwards;
+}
+
+
+@keyframes unresolved {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 15%;
+  }
+}
+
+.inprogress {
+  animation: reveal 2s forwards;
+}
+
+.inprogressTitle {
+  color: #1d4ed8;
+  animation: showText 2s linear;
+}
+
+@keyframes showText {
+  from {
+    color: #e5e7eb;
+
+  }
+
+  to {
+    color: #1d4ed8;
+
+  }
+}
+
+
+@keyframes reveal {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 52%;
+  }
+}
+
+.resolved {
+  animation: resolved 2s forwards;
+}
+
+@keyframes resolved {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
 
 
 /* @media (prefers-color-scheme: dark) {

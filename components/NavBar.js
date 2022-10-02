@@ -32,7 +32,7 @@ export default function NavBar() { //TODOs Implement later
                             <a className="hover:text-indigo-600 transition-colors">Credit</a>
                         </Link>
                     </div>
-                    <svg onClick={toggleNav} className="w-6 h-6 sm:hidden" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                    <svg onClick={toggleNav} className="w-6 h-6 sm:hidden cursor-pointer" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
                 </div>
                 <div className="hidden flex justify-start items-center w-full sm:hidden" id="navbar-cta">
                     <ul className="flex flex-col py-4 mt-2 rounded-lg w-full font-semibold">

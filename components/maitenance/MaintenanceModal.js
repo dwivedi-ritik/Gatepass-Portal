@@ -52,7 +52,7 @@ export default function MaintenanceModal(props) {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
 
     )
 }
