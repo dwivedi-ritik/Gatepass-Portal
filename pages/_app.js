@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <NextNProgress options={{ easing: "ease", speed: 500 }} />
+      <NextNProgress options={{ easing: "ease", speed: 500, showSpinner: false }} />
       <Component {...pageProps} />
     </>
   )
