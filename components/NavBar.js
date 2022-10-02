@@ -25,7 +25,7 @@ export default function NavBar() { //TODOs Implement later
                         <Link href="/status">
                             <a className="hover:text-indigo-600 transition-colors">Status</a>
                         </Link>
-                        <Link href="/admin/login">
+                        <Link href="/admin/login" prefetch={false}>
                             <a className="hover:text-indigo-600 transition-colors">Admin</a>
                         </Link>
                         <Link href="https://dwivedi-ritik.github.io">
@@ -52,7 +52,7 @@ export default function NavBar() { //TODOs Implement later
                             </Link>
                         </li>
                         <li>
-                            <Link href="/admin/login">
+                            <Link href="/admin/login" prefetch={false}>
                                 <a className="block py-2 pr-4 pl-3 text-gray-600 hover:bg-indigo-600 hover:text-white rounded">Admin</a>
                             </Link>
                         </li>

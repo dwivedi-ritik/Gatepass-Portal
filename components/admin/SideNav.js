@@ -38,7 +38,7 @@ export default function SideNav(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
-                    <Link href="/admin/overviews">
+                    <Link href="/admin/overviews" prefetch={false}>
                         <a className="font-medium text-gray-400 cursor-pointer">Overview</a>
                     </Link>
 
@@ -47,7 +47,7 @@ export default function SideNav(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                     </svg>
-                    <Link href="/admin/pendings">
+                    <Link href="/admin/pendings" prefetch={false}>
                         <a className="font-medium text-gray-400 cursor-pointer" >Pending</a>
                     </Link>
                 </div>
@@ -55,7 +55,7 @@ export default function SideNav(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <Link href="/admin/approveds">
+                    <Link href="/admin/approveds" prefetch={false}>
                         <a className="font-medium text-gray-400 cursor-pointer" >Approved</a>
                     </Link>
 
@@ -64,7 +64,7 @@ export default function SideNav(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <Link href="/admin/rejecteds">
+                    <Link href="/admin/rejecteds" prefetch={false}>
                         <a className="font-medium text-gray-400 cursor-pointer">Rejected</a>
                     </Link>
 
