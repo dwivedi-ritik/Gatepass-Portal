@@ -12,7 +12,7 @@ export default function AdminNav(props) {
     }
     return (
         <div className="mt-4 mx-4 flex justify-between items-center">
-            <svg onClick={toggleSideNavOpen} className="w-6 h-6 md:hidden text-gray-600" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg onClick={toggleSideNavOpen} className="w-6 h-6 md:hidden text-gray-600 cursor-pointer" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
 
             <p className="font-bold text-gray-600">{props.title}</p>
