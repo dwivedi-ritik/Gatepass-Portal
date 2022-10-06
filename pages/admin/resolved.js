@@ -51,10 +51,6 @@ function MaintenanceTableRow({ rowData }) {
 }
 
 export default function requests({ data }) {
-    useEffect(() => {
-
-    }, [data])
-
     return (
         <>
             <Head>

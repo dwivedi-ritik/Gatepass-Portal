@@ -2,6 +2,68 @@ import React, { useEffect, useState } from "react";
 import AdminNav from "./AdminNav";
 import Spinner from "../Spinner"
 
+// Chart configuration
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    Filler,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Filler,
+    Tooltip,
+    Legend
+);
+const ShowChart = () => {
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+        },
+    };
+
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Resolved',
+                lineTension: 0.2,
+                data: [0, 0, 0, 0, 12, 3, 4, 0, 0, 11, 12],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+            {
+                label: 'Unresolved',
+                lineTension: 0.2,
+                data: [0, 12, 3, 0, 12, 3, 4, 4, 2, 19, 3],
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+        ],
+    };
+
+    return (
+        <div >
+            <Line options={options} data={data} />;
+        </div>
+    )
+}
+
 export default function MaintenanceOverview() {
     let [dashboardData, setDashboardData] = useState({})
     let [showSpinner, setShowSpinner] = useState(true)
@@ -38,6 +100,7 @@ export default function MaintenanceOverview() {
                             <p className="text-3xl font-semibold">{dashboardData.total}</p>
                         </div>
                     </div>
+                    <ShowChart />
                 </div>
             </div>
         </>
