@@ -31,6 +31,7 @@ export default function adminPendings(props) {
                                     <p className="text-xs text-gray-800 font-semibold">Pending Passes</p>
                                 </div>
                                 <div className="flex items-center gap-2">
+                                    <DownloadData />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                                     </svg>
@@ -81,7 +82,7 @@ export default function adminPendings(props) {
                         </table>
                     </div>
                     <div className="mt-12 mx-4">
-                        <DownloadData />
+
                     </div>
                 </div>
             </div>

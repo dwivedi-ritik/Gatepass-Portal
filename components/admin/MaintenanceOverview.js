@@ -1,68 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminNav from "./AdminNav";
 import Spinner from "../Spinner"
-
-// Chart configuration
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    Filler,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Filler,
-    Tooltip,
-    Legend
-);
-const ShowChart = () => {
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-        },
-    };
-
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: 'Resolved',
-                lineTension: 0.2,
-                data: [0, 0, 0, 0, 12, 3, 4, 0, 0, 11, 12],
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'Unresolved',
-                lineTension: 0.2,
-                data: [0, 12, 3, 0, 12, 3, 4, 4, 2, 19, 3],
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    };
-
-    return (
-        <div >
-            <Line options={options} data={data} />;
-        </div>
-    )
-}
+import ShowChart from "./ShowChart";
 
 export default function MaintenanceOverview() {
     let [dashboardData, setDashboardData] = useState({})
@@ -100,7 +39,29 @@ export default function MaintenanceOverview() {
                             <p className="text-3xl font-semibold">{dashboardData.total}</p>
                         </div>
                     </div>
-                    <ShowChart />
+                    <div className="flex mt-4 flex-col md:flex-row justify-between mx-4">
+                        <div className="mt-4 ml-4">
+                            <p className="text-lg font-semibold text-gray-800">Total Requests</p>
+                            <p className="text-xs text-gray-400">as of {new Date().toLocaleString()}</p>
+
+                            <ShowChart arr={[dashboardData.inProgressDocs, dashboardData.resolvedDocs, dashboardData.unresolvedDocs]} />
+                        </div>
+                        <div className="grid grid-cols-2 justify-center md:grid-cols-1 md:w-1/2 mt-12 md:mt-4">
+                            <div className="h-20  border flex flex-col items-center justify-center">
+                                <p className="text-sm text-gray-400">Resolved</p>
+                                <p className="text-lg font-semibold">{dashboardData.resolvedDocs}</p>
+                            </div>
+                            <div className="h-20  border flex flex-col items-center justify-center">
+                                <p className="text-sm text-gray-400">Received</p>
+                                <p className="text-sm font-semibold">{dashboardData.total}</p>
+                            </div>
+                            <div className="h-20  border flex flex-col items-center justify-center">
+                                <p className="text-sm text-gray-400">Unresolved</p>
+                                <p className="text-sm font-semibold">{dashboardData.unresolvedDocs}</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>

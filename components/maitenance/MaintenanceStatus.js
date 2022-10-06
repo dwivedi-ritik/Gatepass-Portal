@@ -56,8 +56,8 @@ export default function MaintenanceStatus(props) {
     return (
         <>
             <div className="mx-4 mt-16 flex flex-col items-start sm:items-center sm:justify-between">
-                <p className="font-bold text-xl">Order #{props.data.token}</p>
-                <p className="text-xs text-gray-500">order placed at <span className="text-gray-600 font-semibold">March 22, 2022</span></p>
+                <p className="font-bold text-xl">Maintenance request #{props.data.token}</p>
+                <p className="text-xs text-gray-500">requested at <span className="text-gray-600 font-semibold">March 22, 2022</span></p>
             </div>
 
             <div className="mx-4 sm:mx-auto mt-10 bg-white px-4 pt-4 border-gray-300 border sm:w-[60%]">
