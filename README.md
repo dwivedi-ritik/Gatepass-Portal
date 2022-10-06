@@ -26,7 +26,7 @@ Description of all the Implemented APIs
 # Maintenance APIs
 
 - `api/maintenance/add` [ POST ]
-- `api/maintenance/changeStatus` [ GET ]
+- `api/maintenance/changeStatus` [ POST ]
 - `api/maintenance/getDashboard` [ GET ]
 - `api/maintenance/getResolved` [ GET ]
 - `api/maintenance/getUnresolved` [ GET ]

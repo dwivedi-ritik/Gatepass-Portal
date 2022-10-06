@@ -13,18 +13,18 @@ export default function unresolved({ data }) {
     return (
         <>
             <Head>
-                <title>Maintenances requests</title>
+                <title>Unresolved</title>
                 <meta name='description' description='Admin panel for changing maintenance requests and downlaoding the csv files'></meta>
             </Head>
             <div className='flex'>
-                <SideNav elName={"resolved"} />
+                <SideNav elName={"unresolved"} />
                 <div className='w-full'>
                     <div className='mx-4'>
                         <AdminNav title={"Maintenance requests"} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
                             <div className="flex justify-between items-center mx-2 md:mx-6 my-4">
-                                <div className="font-medium">
-                                    <p className="text-sm text-gray-800 font-semibold">Maintenance Requests</p>
+                                <div className="">
+                                    <p className="text-xs font-semibold  text-gray-800 ">Unresolveds</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <button className='border rounded-sm text-xs mr-2 py-1 px-3'>
@@ -47,7 +47,7 @@ export default function unresolved({ data }) {
                             </div>
                         </div>
                     </div>
-                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-[30rem]">
+                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>

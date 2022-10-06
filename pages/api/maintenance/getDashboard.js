@@ -14,7 +14,8 @@ export default async function handler(req, res) {
     return res.json({
         unresolvedDocs,
         resolvedDocs,
-        inProgressDocs
+        inProgressDocs,
+        total: unresolvedDocs + resolvedDocs + inProgressDocs
     })
 
 }

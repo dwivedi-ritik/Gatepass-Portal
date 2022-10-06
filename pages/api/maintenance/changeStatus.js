@@ -2,11 +2,12 @@ import dbConnect from "../../../lib/dbConnect";
 import Maintenance from "../../../Model/Maintenance"
 
 export default async function handler(req, res) {
-    if (req.method !== 'PATCH') {
+    if (req.method !== 'POST') {
         return res.status(403).send('Method not allowed')
     }
-    const { token, status } = req.body
 
+    const { token, status } = JSON.parse(req.body)
+    console.log(token, status)
     if (!token || !status) {
         return res.status(400).send("Bad Request")
     }
