@@ -28,7 +28,7 @@ export default function unresolved({ data }) {
                                     <p className="text-xs font-semibold  text-gray-800 ">Unresolveds</p>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <DownloadData />
+                                    <DownloadData url={`/api/maintenance/getExcelSheet?status=${maintenanceStatus.UNRESOLVED}`} />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                                     </svg>
@@ -43,7 +43,7 @@ export default function unresolved({ data }) {
                             </div>
                         </div>
                     </div>
-                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
+                    <div className="overflow-x-auto border sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
