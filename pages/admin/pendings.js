@@ -81,9 +81,6 @@ export default function adminPendings(props) {
                             </tbody>
                         </table>
                     </div>
-                    <div className="mt-12 mx-4">
-
-                    </div>
                 </div>
             </div>
         </div>

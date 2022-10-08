@@ -81,10 +81,6 @@ export default function adminApproveds(props) {
                             </tbody>
                         </table>
                     </div>
-
-                    <div className="mt-12 mx-4">
-                        <DownloadData />
-                    </div>
                 </div>
             </div>
         </div>

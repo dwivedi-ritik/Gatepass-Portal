@@ -75,7 +75,6 @@ export default function adminRejecteds(props) {
                                 {props.data.map(obj => {
                                     return <TableRow data={obj} key={obj._id} />
                                 })}
-
                             </tbody>
                         </table>
                     </div>
