@@ -15,6 +15,7 @@ export default function SideNav(props) {
     const signOutHandler = async () => {
         await signOut()
     }
+
     const toggleSideNavClose = () => {
         const sideNav = document.querySelector('.sidenav')
         sideNav.classList.add('hidden')
@@ -34,7 +35,7 @@ export default function SideNav(props) {
 
             </div>
             <div className="sidenav flex flex-col items-center">
-                <Link href="/admin/overviews" prefetch={false}>
+                <Link href="/admin/gatepass/" prefetch={false}>
                     <a className="mt-8 flex h-12 w-full items-center justify-start gap-3 overviews hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -43,7 +44,7 @@ export default function SideNav(props) {
 
                     </a>
                 </Link>
-                <Link href="/admin/pendings" prefetch={false}>
+                <Link href="/admin/gatepass/pendings" prefetch={false}>
                     <a className="mt-1 flex h-12 w-full items-center justify-start gap-3 pendings hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -51,7 +52,7 @@ export default function SideNav(props) {
                         <p className="font-medium text-gray-400 cursor-pointer" >Pending GatePass</p>
                     </a>
                 </Link>
-                <Link href="/admin/approveds" prefetch={false}>
+                <Link href="/admin/gatepass/approveds" prefetch={false}>
                     <a className="mt-1 flex h-12 w-full items-center justify-start gap-3 approveds hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -60,7 +61,7 @@ export default function SideNav(props) {
                     </a>
                 </Link>
 
-                <Link href="/admin/rejecteds" prefetch={false}>
+                <Link href="/admin/gatepass/rejecteds" prefetch={false}>
                     <a className="mt-1 flex h-12 w-full items-center justify-start gap-3 rejecteds hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -69,7 +70,7 @@ export default function SideNav(props) {
                     </a>
                 </Link>
 
-                <Link href="/admin/maintenances" prefetch={false}>
+                <Link href="/admin/maintenance/" prefetch={false}>
                     <a className="mt-1 flex h-12 w-full items-center justify-start gap-3 maintenance hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -79,7 +80,7 @@ export default function SideNav(props) {
                     </a>
                 </Link>
 
-                <Link href="/admin/resolved" prefetch={false}>
+                <Link href="/admin/maintenance/resolved" prefetch={false}>
                     <a className="mt-1 flex h-12 w-full items-center justify-start gap-3 resolved hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-3 h-4 w-4 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -90,7 +91,7 @@ export default function SideNav(props) {
                 </Link>
 
 
-                <Link href="/admin/unresolved" prefetch={false}>
+                <Link href="/admin/maintenance/unresolved" prefetch={false}>
                     <a className="mt-1 flex h-12 w-full items-center justify-start gap-3 hover:bg-gray-700 unresolved">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

@@ -1,32 +1,34 @@
 import React from "react";
 import Head from "next/head";
+
 import { getSession } from "next-auth/react";
 
-import SideNav from "../../components/admin/SideNav";
-import AdminNav from "../../components/admin/AdminNav";
-import TableRow from "../../components/admin/TableRow"
-import DownloadData from "../../components/admin/DownloadData";
-import GatePass from "../../Model/GatePass"
-import dbConnect from "../../lib/dbConnect"
-import { gatePassStatus } from "../../utils/constants"
+import SideNav from "../../../components/admin/SideNav";
+import AdminNav from "../../../components/admin/AdminNav";
+import TableRow from "../../../components/admin/TableRow"
+import DownloadData from "../../../components/admin/DownloadData"
+
+import GatePass from "../../../Model/GatePass"
+import dbConnect from "../../../lib/dbConnect"
+import { gatePassStatus } from "../../../utils/constants"
 
 
 
-export default function adminRejecteds(props) {
+export default function adminPendings(props) {
     return (
         <div>
             <Head>
-                <title>Rejected Passes</title>
+                <title>Pending Passes</title>
             </Head>
             <div className="flex">
-                <SideNav elName={"rejecteds"} />
+                <SideNav elName={"pendings"} />
                 <div className="w-full ">
                     <div className="mx-4">
-                        <AdminNav title={"Rejected Passes"} />
+                        <AdminNav title={"Pending Passes"} user={props.user} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
-                            <div className="flex justify-between mx-6 my-4">
+                            <div className="flex justify-between mx-6 my-4 items-center">
                                 <div className="font-medium">
-                                    <p className="text-xs text-gray-800 font-semibold">Rejected Passes</p>
+                                    <p className="text-xs text-gray-800 font-semibold">Pending Passes</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <DownloadData />
@@ -44,7 +46,7 @@ export default function adminRejecteds(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
+                    <div className="overflow-x-auto border sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -75,6 +77,7 @@ export default function adminRejecteds(props) {
                                 {props.data.map(obj => {
                                     return <TableRow data={obj} key={obj._id} />
                                 })}
+
                             </tbody>
                         </table>
                     </div>
@@ -96,11 +99,12 @@ export async function getServerSideProps(context) {
         }
     }
     await dbConnect()
-    const allCollections = await GatePass.find({ status: gatePassStatus.REJECTED }).sort({ "createdAt": "desc" })
+    const allCollections = await GatePass.find({ status: gatePassStatus.PENDING }).sort({ "createdAt": "desc" })
 
     return {
         props: {
-            data: JSON.parse(JSON.stringify(allCollections))
+            data: JSON.parse(JSON.stringify(allCollections)),
+            user: session.user
         }
 
     }

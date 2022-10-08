@@ -6,9 +6,8 @@ import ShowChart from "./ShowChart";
 
 import Spinner from "../Spinner"
 
-export default function AdminOverview() {
+export default function AdminOverview({ user }) {
     let [dashboard, setDashboard] = useState({})
-
     let [showSpinner, setShowSpinner] = useState(true)
     let [pieChartData, setPieChartData] = useState([])
     useEffect(() => {
@@ -32,7 +31,7 @@ export default function AdminOverview() {
             {!showSpinner &&
                 <div className="w-full bg-gray-50">
                     <div className="mx-4">
-                        <AdminNav title={"Overviews"} />
+                        <AdminNav title={"Overviews"} user={user} />
                         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
                             <div className="flex h-32 flex-col items-center justify-center rounded  bg-sky-100 border-sky-600">
                                 <p className="text-lg font-semibold text-gray-400">Pending</p>

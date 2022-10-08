@@ -1,11 +1,11 @@
 import Head from "next/head"
 import { getSession } from "next-auth/react"
 
-import SideNav from "../../components/admin/SideNav"
-import AdminOverview from "../../components/admin/AdminOverview"
+import SideNav from "../../../components/admin/SideNav"
+import AdminOverview from "../../../components/admin/AdminOverview"
 
 
-export default function adminHome() {
+export default function adminHome(props) {
     return (
         <div>
             <Head>
@@ -13,7 +13,7 @@ export default function adminHome() {
             </Head>
             <div className="flex">
                 <SideNav elName={"overviews"} />
-                <AdminOverview />
+                <AdminOverview user={props.user} />
             </div>
         </div>
     )
@@ -30,6 +30,8 @@ export async function getServerSideProps(context) {
         }
     }
     return {
-        props: {}
+        props: {
+            user: session.user
+        }
     }
 } 

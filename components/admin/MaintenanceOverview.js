@@ -3,7 +3,7 @@ import AdminNav from "./AdminNav";
 import Spinner from "../Spinner"
 import ShowChart from "./ShowChart";
 
-export default function MaintenanceOverview() {
+export default function MaintenanceOverview(props) {
     let [dashboardData, setDashboardData] = useState({})
     let [showSpinner, setShowSpinner] = useState(true)
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function MaintenanceOverview() {
             {showSpinner && <Spinner />}
             <div className="w-full bg-gray-50">
                 <div className="mx-4">
-                    <AdminNav title={"Maintenance Overviews"} />
+                    <AdminNav title={"Maintenance Overviews"} user={props.user} />
                     <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
                         <div className="flex h-32 flex-col items-center justify-center rounded  bg-sky-100 border-sky-600">
                             <p className="text-lg font-semibold text-gray-400">In Progress</p>
