@@ -1,18 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { getSession } from "next-auth/react";
 
 import SideNav from "../../../components/admin/SideNav";
 import AdminNav from "../../../components/admin/AdminNav";
-import TableRow from "../../../components/admin/TableRow"
 import DownloadData from "../../../components/admin/DownloadData";
 import GatePass from "../../../Model/GatePass"
 import dbConnect from "../../../lib/dbConnect"
 import { gatePassStatus } from "../../../utils/constants"
+import { dateParserFromString } from "../../../utils/helper"
 
+const TableRow = ({ rowData }) => {
+    return (
+        <tr className="bg-white border-b">
+            <th scope="row" className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900">
+                {rowData.firstname + " " + rowData.lastname}
+            </th>
+            <td className="py-4 px-6 font-semibold">
+                {rowData.year}
+            </td>
+            <td className="py-4 px-6 font-semibold">
+                {rowData.roomNo}
+            </td>
+            <td className="py-4 px-6 font-semibold">
+                {rowData.mobileNo}
+            </td>
+            <td className="py-4 px-6 font-semibold">
+                {rowData.parentsNo}
+            </td>
 
+            <td className="py-4 px-6 font-semibold">
+                {dateParserFromString(rowData.departure)}
+            </td>
+            <td className="py-4 px-6 font-semibold">
+                {dateParserFromString(rowData.arrival)}
+            </td>
+            <td className="py-4 px-6 font-semibold">
+                {rowData.token}
+            </td>
+
+        </tr>
+    )
+}
 
 export default function adminRejecteds(props) {
+    const DOWNLOAD_URL = `/api/gatepass/getExcelSheet?status=${gatePassStatus.REJECTED}`
     return (
         <div>
             <Head>
@@ -29,7 +61,7 @@ export default function adminRejecteds(props) {
                                     <p className="text-xs text-gray-800 font-semibold">Rejected Passes</p>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <DownloadData />
+                                    <DownloadData url={DOWNLOAD_URL} />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                                     </svg>
@@ -63,9 +95,14 @@ export default function adminRejecteds(props) {
                                     <th scope="col" className="py-3 px-6">
                                         Parents No
                                     </th>
-
                                     <th scope="col" className="py-3 px-6">
-                                        Status
+                                        Departure
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Arrival
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Token
                                     </th>
                                     <th scope="col" className="py-3 px-4">
                                     </th>
@@ -73,7 +110,7 @@ export default function adminRejecteds(props) {
                             </thead>
                             <tbody>
                                 {props.data.map(obj => {
-                                    return <TableRow data={obj} key={obj._id} />
+                                    return <TableRow rowData={obj} key={obj._id} />
                                 })}
                             </tbody>
                         </table>

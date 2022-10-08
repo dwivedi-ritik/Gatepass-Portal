@@ -22,7 +22,7 @@ const DropdownStatus = () => {
 
 const MobileDropdownStatus = () => {
     return (
-        <div class="w-full font-normal rounded bg-gray-100">
+        <div className="w-full font-normal rounded bg-gray-100">
             <ul className="py-1 text-sm text-gray-700 dark:text-gray-400" >
                 <li>
                     <Link href='/status'>

@@ -6,6 +6,10 @@ import dbConnect from "../../../lib/dbConnect"
 import GatePass from "../../../Model/GatePass"
 import { dateParserFromString, parseJson } from "../../../utils/helper"
 
+function generateFilename(status) {
+    const date = new Date().toLocaleDateString()
+    return `${status}-gatepass-${date}.csv`
+}
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
@@ -16,10 +20,13 @@ export default async function handler(req, res) {
         if (!session) {
             return res.status(401).send("Unauthorized")
         }
+        const { status } = req.query
         await dbConnect()
         const readableStream = new Readable()
         let size = 0
-        const dbData = await GatePass.find()
+        const filename = generateFilename(status)
+
+        const dbData = await GatePass.find({ status })
             .select('-_id')
             .select('-__v')
             .select('-updatedAt')
@@ -49,7 +56,7 @@ export default async function handler(req, res) {
         res.writeHead(200, {
             'Content-Type': 'text/csv',
             'Content-Length': size,
-            'Content-Disposition': 'filename=data.csv'
+            'Content-Disposition': `filename=${filename}`
         })
         readableStream.push(null)
         readableStream.pipe(res)
