@@ -1,40 +1,44 @@
-## Getting Started
+A Portal for managing Gatepass and maintenances 
 
-First, run the development server:
+## Todos
+- Modal of view details in Gatepass table
+- Dropdown in Side nav of admin panel
+- One Page to see all the Details about Gatepass and maintenaces
+- Responsive table
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Known Bugs
+- Downloaded files does't add empty string on empty entries
+- Side Nav is wiggling on mobile devices 
+
+
 
 Description of all the Implemented APIs
 
-# Gate Pass APIs
+
+Gate Pass APIs
 
 - `api/gatepass/add` [POST]
 - `api/gatepass/getByToken` [GET]
-- `api/gatepass/getExcelSheet` [GET] 
+- `api/gatepass/getExcelSheet?status={status}` [GET]** 
 - `api/gatepass/getPassCount` [ GET ]
 - `api/gatepass/getRequestsInYear`	[ GET ]
 - `api/gatepass/sendMail` [POST]
 
-# Subscription
+Subscription APIs
+
 - `api/subscription/add` [ POST ]
 - `api/subscription/sendNotification?token={tokenId}&status={status}` [ GET ]
 
-# Maintenance APIs
+Maintenance APIs
 
 - `api/maintenance/add` [ POST ]
 - `api/maintenance/changeStatus` [ POST ]
+- `api/maintenance/deleteByToken` [ POST ]
 - `api/maintenance/getDashboard` [ GET ]
 - `api/maintenance/getResolved` [ GET ]
 - `api/maintenance/getUnresolved` [ GET ]
-- `api/maintenance/getExcelSheetOfUnresolved`[GET] **
+- `api/maintenance/getExcelSheet?status={status}`[GET]**
 
-
-
-# Special Cases
 | Symbol |  Task|
 |--|--|
 | `*` | `Buggy` |
