@@ -27,7 +27,7 @@ export default function adminApproveds(props) {
                     <div className="mx-4">
                         <AdminNav title={"Approve Passes"} user={props.user} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
-                            <div className="flex justify-between mx-6 my-4 items-center">
+                            <div className="flex justify-between mx-2 my-2 sm:my-4 sm:mx-4 items-center">
                                 <div className="font-medium">
                                     <p className="text-xs text-gray-800 font-semibold">Apporved Passes</p>
                                 </div>

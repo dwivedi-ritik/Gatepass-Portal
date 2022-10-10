@@ -91,9 +91,9 @@ export default function TableRow(props) {
     return (
         <tr className="bg-white border-b">
             {showSpinner && <Spinner />}
-            <th scope="row" className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900">
+            <td className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900">
                 {rowData.firstname + " " + rowData.lastname}
-            </th>
+            </td>
             <td className="py-4 px-6 font-semibold">
                 {rowData.year}
             </td>

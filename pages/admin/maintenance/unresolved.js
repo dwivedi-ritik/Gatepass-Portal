@@ -24,7 +24,7 @@ export default function unresolved({ data, user }) {
                     <div className='mx-4'>
                         <AdminNav title={"Maintenance requests"} user={user} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
-                            <div className="flex justify-between items-center mx-2 md:mx-6 my-4">
+                            <div className="flex justify-between items-center mx-2 my-2 sm:my-4 sm:mx-4">
                                 <div className="">
                                     <p className="text-xs font-semibold  text-gray-800 ">Unresolveds</p>
                                 </div>

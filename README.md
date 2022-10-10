@@ -1,8 +1,8 @@
 A Portal for managing Gatepass and maintenances 
 
 ## Todos
-- Modal of view details in Gatepass table
-- Dropdown in Side nav of admin panel
+- Modal of view details in Gatepass table [in progress] 
+- Dropdown in Side nav of admin panel [Done]
 - One Page to see all the Details about Gatepass and maintenaces
 - Responsive table
 

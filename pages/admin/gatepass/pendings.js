@@ -27,7 +27,7 @@ export default function adminPendings(props) {
                     <div className="mx-4">
                         <AdminNav title={"Pending Passes"} user={props.user} />
                         <div className="mt-12 h-auto w-full rounded border bg-white">
-                            <div className="flex justify-between mx-6 my-4 items-center">
+                            <div className="flex justify-between mx-2 my-4 sm:my-4 sm:mx-4 items-center">
                                 <div className="font-medium">
                                     <p className="text-xs text-gray-800 font-semibold">Pending Passes</p>
                                 </div>
@@ -47,7 +47,7 @@ export default function adminPendings(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto border sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
+                    <div className="overflow-x-auto border-2 sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
