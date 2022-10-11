@@ -32,16 +32,14 @@ export default function MaintenanceModal(props) {
                             </div>
                         </div>
                         <div className="bg-gray-100 px-4 py-3 flex justify-between flex-row-reverse">
-                            <Link href="/status">
+                            <Link href="/maintenance/status/check">
                                 <a type="button" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700  sm:text-sm">Check Status</a>
                             </Link>
                             <div className='flex  items-center gap-1 cursor-pointer' >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                                 </svg>
-                                {/* <Link href="/"> */}
-                                <button className='text-indigo-600 tracking-wide text-xs' onClick={() => props.setShowModel(false)} >Create new pass</button>
-                                {/* </Link> */}
+                                <button className='text-indigo-600 tracking-wide text-xs' onClick={() => props.setShowModal(false)} >Create new request</button>
                             </div>
                         </div>
                     </div>

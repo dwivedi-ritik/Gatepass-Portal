@@ -1,12 +1,14 @@
 import { useRef, useState } from "react"
 import Head from "next/head"
+import Spinner from "../../components/Spinner"
 
 import NavBar from "../../components/NavBar"
 import MaintenanceModal from "../../components/maitenance/MaintenanceModal"
 
 export default function MaintenanceForm(props) {
     let [modalData, setModalData] = useState({})
-    let [showModal, setShowModel] = useState(false)
+    let [showModal, setShowModal] = useState(false)
+    let [showSpinner, setShowSpinner] = useState(false)
 
     let title = useRef(null)
     let mobileNo = useRef(null)
@@ -25,16 +27,18 @@ export default function MaintenanceForm(props) {
             description: description.current.value,
             roomNo: roomNo.current.value
         }
+        setShowSpinner(true)
         fetch('/api/maintenance/add',
             {
                 method: 'POST',
                 body: JSON.stringify(postBody)
             })
-            .then(res => res.json())
-            .then(data => {
+            .then(async res => {
+                setShowSpinner(false)
+                const data = await res.json()
+                setShowSpinner(false)
                 setModalData(data)
-                setShowModel(true)
-                console.log(data)
+                setShowModal(true)
             })
             .catch(err => console.log(err))
     }
@@ -46,7 +50,8 @@ export default function MaintenanceForm(props) {
                 </meta>
             </Head>
             <NavBar />
-            {showModal && <MaintenanceModal data={modalData} />}
+            {showSpinner && <Spinner />}
+            {showModal && <MaintenanceModal data={modalData} setShowModal={setShowModal} />}
             <div className="flex justify-center mb-5">
                 <form className="w-full max-w-lg mx-5 sm:mx-0" onSubmit={handleSubmitEvent}>
                     <p className="block uppercase my-7 tracking-wide text-gray-700 text-md font-bold">Maintenance Details</p>
@@ -61,13 +66,13 @@ export default function MaintenanceForm(props) {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                                 Mobile No
                             </label>
-                            <input ref={mobileNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="text" placeholder="Mobile No"></input>
+                            <input ref={mobileNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Mobile No"></input>
                         </div>
                         <div className="w-full px-3 mt-3">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                                 Room No
                             </label>
-                            <input ref={roomNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="text" placeholder="Room No"></input>
+                            <input ref={roomNo} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" type="number" placeholder="Room No"></input>
                         </div>
                     </div>
                     <div className="flex flex-wrap -mx-3">

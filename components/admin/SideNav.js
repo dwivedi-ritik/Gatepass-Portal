@@ -29,7 +29,7 @@ export default function SideNav(props) {
         sideNav.classList.remove("right-0")
     }
     return (
-        <div className="h-screen bg-gray-800 sidenav hidden md:w-1/4 md:block ">
+        <div className="h-screen bg-gray-800 sidenav hidden md:w-1/4 md:block md:static">
 
             <div className="flex justify-center pt-3 relative">
                 <p className="font-bold uppercase text-gray-300">Admin Portal</p>
