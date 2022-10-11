@@ -4,11 +4,12 @@ export default function AdminNav({ title, user }) {
     const toggleSideNavOpen = () => {
         const sideNav = document.querySelector('.sidenav')
         sideNav.classList.remove('hidden')
-        sideNav.classList.add("absolute")
+        sideNav.classList.add("fixed")
         sideNav.classList.add("top-0")
         sideNav.classList.add("left-0")
         sideNav.classList.add("bottom-0")
         sideNav.classList.add("right-0")
+        sideNav.classList.add("z-50")
     }
     return (
         <div className="mt-4 flex justify-between items-center">

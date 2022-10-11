@@ -22,14 +22,15 @@ export default function SideNav(props) {
     const toggleSideNavClose = () => {
         const sideNav = document.querySelector('.sidenav')
         sideNav.classList.add('hidden')
-        sideNav.classList.remove("absolute")
+        sideNav.classList.remove("fixed")
         sideNav.classList.remove("top-0")
         sideNav.classList.remove("left-0")
         sideNav.classList.remove("bottom-0")
         sideNav.classList.remove("right-0")
     }
     return (
-        <div className="h-screen bg-gray-800 sidenav hidden md:w-1/4 md:block transition-color">
+        <div className="h-screen bg-gray-800 sidenav hidden md:w-1/4 md:block ">
+
             <div className="flex justify-center pt-3 relative">
                 <p className="font-bold uppercase text-gray-300">Admin Portal</p>
                 <svg onClick={toggleSideNavClose} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6 cursor-pointer text-green-100 absolute right-4 md:hidden ">
@@ -37,7 +38,9 @@ export default function SideNav(props) {
                 </svg>
 
             </div>
-            <div className="sidenav flex flex-col items-start text-xs cursor-pointer">
+
+            <div className="flex flex-col items-start text-xs cursor-pointer">
+
                 <div className="mt-8 flex h-12 w-full items-center justify-between  hover:bg-gray-700" onClick={() => setShowGatePassLinks(!showGatePassLinks)}>
                     <div className="flex items-center gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="ml-3 h-4 w-4 text-gray-400">
@@ -100,6 +103,7 @@ export default function SideNav(props) {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </div>
+
                 {showMaintenanceLinks &&
                     <div className="pl-3 w-full ">
                         <Link href="/admin/maintenance/" prefetch={false}>

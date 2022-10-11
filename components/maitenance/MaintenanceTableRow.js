@@ -22,7 +22,7 @@ export default function MaintenanceTableRow(props) {
 
     return (
         <tr className="bg-white border-b">
-            <th scope="row" className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900">
+            <th scope="row" className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900 ">
                 {rowData.title}
             </th>
             <td className="py-4 px-6 font-semibold">
