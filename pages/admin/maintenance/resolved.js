@@ -18,7 +18,7 @@ function MaintenanceTableRow({ rowData }) {
 
     return (
         <tr className="bg-white mt-6 sm:mt-0 w-full sm:border" id="responsive-table">
-            <td data-label='Title' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0 ">
+            <td data-label='Title' className="text-right sm:text-left py-4 px-6 font-semibold ">
                 {rowData.title}
             </td>
             <td data-label='Type' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0 ">
@@ -58,7 +58,7 @@ export default function requests({ data, user }) {
                 <title>Resolved</title>
                 <meta name='description' description='Admin panel for changing maintenance requests and downlaoding the csv files'></meta>
             </Head>
-            <div className='flex'>
+            <div className='flex bg-gray-100'>
                 <SideNav elName={"resolved"} />
                 <div className='w-full'>
                     <div className='mx-4'>

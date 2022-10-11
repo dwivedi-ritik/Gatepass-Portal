@@ -46,6 +46,8 @@ a {
 
   #responsive-table td::before {
     color: black;
+    opacity: 0.8;
+    font-weight: 400;
     display: block;
     content: attr(data-label);
     position: absolute;
