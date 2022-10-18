@@ -3,6 +3,8 @@ import AdminNav from "./AdminNav";
 import Spinner from "../Spinner"
 import ShowChart from "./ShowChart";
 
+import MaintenanceAreaChart from "../maitenance/MaintenanceAreaChart";
+
 export default function MaintenanceOverview(props) {
     let [dashboardData, setDashboardData] = useState({})
     let [showSpinner, setShowSpinner] = useState(true)
@@ -39,12 +41,14 @@ export default function MaintenanceOverview(props) {
                             <p className="text-3xl font-semibold">{dashboardData.total}</p>
                         </div>
                     </div>
-                    <div className="flex mt-4 flex-col md:flex-row justify-between mx-4">
-                        <div className="mt-4 ml-4">
+                    <div className="flex mt-4 flex-col md:flex-row mx-4 md:space-x-3">
+                        <div className="mt-4 w-full">
                             <p className="text-lg font-semibold text-gray-800">Total Requests</p>
                             <p className="text-xs text-gray-400">as of {new Date().toLocaleString()}</p>
-
-                            <ShowChart arr={[dashboardData.inProgressDocs, dashboardData.resolvedDocs, dashboardData.unresolvedDocs]} />
+                            <div className="mt-2">
+                                <MaintenanceAreaChart />
+                            </div>
+                            {/* <ShowChart arr={[dashboardData.inProgressDocs, dashboardData.resolvedDocs, dashboardData.unresolvedDocs]} /> */}
                         </div>
                         <div className="grid grid-cols-2 justify-center md:grid-cols-1 md:w-1/2 mt-12 md:mt-4">
                             <div className="h-20  border flex flex-col items-center justify-center">
@@ -64,6 +68,7 @@ export default function MaintenanceOverview(props) {
 
                 </div>
             </div>
+
         </>
     )
 }

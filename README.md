@@ -2,8 +2,11 @@ A Portal for managing Gatepass and maintenances
 
 ## Todos
 - Modal of view details in Gatepass table [in progress] 
-- Dropdown in Side nav of admin panel [Done]
 - One Page to see all the Details about Gatepass and maintenaces
+- Rechart js Area Chart [ on Test-Chart Branch ]
+
+## Done
+- Dropdown in Side nav of admin panel [Done]
 - Responsive table
 
 ## Known Bugs
