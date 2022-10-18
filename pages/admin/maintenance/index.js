@@ -4,6 +4,7 @@ import { getSession } from "next-auth/react"
 import SideNav from '../../../components/admin/SideNav'
 import MaintenanceOverview from '../../../components/admin/MaintenanceOverview'
 
+
 export default function maintenances(props) {
     return (
         <>
@@ -13,7 +14,7 @@ export default function maintenances(props) {
             </Head>
             <div className='flex'>
                 <SideNav elName={"maintenance"} />
-                <MaintenanceOverview user={props.user} />
+                <MaintenanceOverview user={props.user} chartData={props.chartData} />
             </div>
         </>
     )
@@ -29,9 +30,11 @@ export async function getServerSideProps(context) {
             }
         }
     }
+
     return {
         props: {
-            user: session.user
+            user: session.user,
+
         }
     }
 } 

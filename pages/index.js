@@ -229,7 +229,10 @@ export default function Home() {
           </div>
         </form>
 
+
       </div>
+      <p className='text-xs text-center text-gray-600'>Push notification might not work on all devices</p>
+      <p className='text-xs text-center text-gray-600 mb-4'>Make sure your email is correct</p>
     </div >
   )
 }

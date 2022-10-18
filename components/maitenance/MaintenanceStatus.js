@@ -2,7 +2,6 @@ import styles from "./MaintenanceStatus.module.css"
 import React from "react"
 
 import { maintenanceStatus } from "../../utils/constants"
-
 const ProgressBarUnresolved = () => {
     return (
         <div className="h-2 rounded-full bg-indigo-600 transition-width" id={styles.unresolved} >
@@ -53,6 +52,7 @@ const ProgressBarResolved = () => {
 
 
 export default function MaintenanceStatus(props) {
+    console.log(maintenanceStatus.IN_PROGRESS === props.data.status)
     return (
         <>
             <div className="mx-4 mt-16 flex flex-col items-start sm:items-center sm:justify-between">
@@ -77,10 +77,9 @@ export default function MaintenanceStatus(props) {
                 <p className="text-xs font-semibold mt-4">Maintenance status</p>
                 <div className="my-8">
                     <div className="relative h-2 w-full rounded-full bg-gray-200">
-                        {props.status === maintenanceStatus.RESOLVED && <ProgressBarResolved />}
-                        {props.status === maintenanceStatus.UNRESOLVED && <ProgressBarUnresolved />}
-                        {props.status === maintenanceStatus.IN_PROGRESS && <ProgressBarInprogress />}
-                        <ProgressBarInprogress />
+                        {props.data.status === maintenanceStatus.RESOLVED && <ProgressBarResolved />}
+                        {props.data.status === maintenanceStatus.UNRESOLVED && <ProgressBarUnresolved />}
+                        {props.data.status === maintenanceStatus.IN_PROGRESS && <ProgressBarInprogress />}
                     </div>
                 </div>
             </div>

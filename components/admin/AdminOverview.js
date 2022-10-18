@@ -17,10 +17,10 @@ export default function AdminOverview({ user }) {
                 setDashboard(respo)
                 setShowSpinner(false)
             })
-        fetch("/api/gatepass/getPassCount")
+        fetch("/api/gatepass/getDashboardPieChart")
             .then(res => res.json())
             .then(data => {
-                setPieChartData([data.rejectCount, data.pendingCount, data.approveCount])
+                setPieChartData(data)
             })
     }, [])
 
