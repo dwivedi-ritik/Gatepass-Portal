@@ -25,26 +25,30 @@ const handleMailingForNotification = async (tokenId, receiver) => {
 export default function Home() {
 
   const subscriptionRef = useRef(null)
-  //Service worker registration
-  useEffect(() => {
-    (async () => {
-      try {
-        if ('serviceWorker' in navigator) {
-          const register = await navigator.serviceWorker.register('worker.js', {
-            scope: '/'
-          });
 
-          const subscription = await register.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
-          });
-          subscriptionRef.current = subscription
-        }
-      } catch (e) {
-        console.log(e)
+  //Service worker registration
+  // useEffect(() => {
+  //   (async () => {
+  const emitNotification = async () => {
+    try {
+      if ('serviceWorker' in navigator) {
+        const register = await navigator.serviceWorker.register('worker.js', {
+          scope: '/'
+        });
+
+        const subscription = await register.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+        });
+        subscriptionRef.current = subscription
       }
-    })();
-  }, [])
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  // })();
+  // }, [])
 
   let [showModel, setShowModel] = useState(false)
   let [showSpinner, setShowSpinner] = useState(false)
@@ -214,10 +218,10 @@ export default function Home() {
           </div>
           <div className='mt-3 flex justify-between items-center gap-3'>
             <div className='flex  items-center gap-1'>
-              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-indigo-700 rounded-lg">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-              </svg>
-              <a className=' text-indigo-600 tracking-wide text-xs'>Back to home</a> */}
+              <div className="flex items-center">
+                <input type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500  focus:ring-2 " onClick={emitNotification}></input>
+                <label className="ml-2 text-sm font-medium text-gray-90">Show notification</label>
+              </div>
             </div>
             <button className="bg-transparent hover:bg-indigo-700 text-indigo-700 font-semibold hover:text-white py-2 px-4 border border-indigo-500 hover:border-transparent rounded" type='submit' >
               Send Request
