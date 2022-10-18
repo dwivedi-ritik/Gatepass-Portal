@@ -95,7 +95,7 @@ const SearchBar = () => {
 
 
 
-export default function resolved({ data, user }) {
+export default function Resolved({ data, user }) {
     let [sortComp, setSortComp] = useState(false)
     return (
         <>
