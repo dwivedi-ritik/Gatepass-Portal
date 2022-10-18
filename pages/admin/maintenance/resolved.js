@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Head from 'next/head'
 import { getSession } from 'next-auth/react'
 
@@ -8,7 +9,6 @@ import dbConnect from '../../../lib/dbConnect'
 import Maintenance from '../../../Model/Maintenance'
 import DownloadData from "../../../components/admin/DownloadData"
 
-import React, { useState } from "react";
 import { maintenanceStatus } from '../../../utils/constants'
 
 import Link from "next/link";
@@ -95,7 +95,7 @@ const SearchBar = () => {
 
 
 
-export default function requests({ data, user }) {
+export default function resolved({ data, user }) {
     let [sortComp, setSortComp] = useState(false)
     return (
         <>
