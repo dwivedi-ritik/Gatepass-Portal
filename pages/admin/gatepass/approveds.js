@@ -8,6 +8,8 @@ import AdminNav from "../../../components/admin/AdminNav";
 import DownloadData from "../../../components/admin/DownloadData";
 
 import TableRow from "../../../components/admin/TableRow"
+import RejectedTableRow from "../../../components/gatepass/RejectedTableRow"
+
 import GatePass from "../../../Model/GatePass"
 import dbConnect from "../../../lib/dbConnect"
 import { gatePassStatus } from "../../../utils/constants"
@@ -67,7 +69,13 @@ export default function adminApproveds(props) {
                                         Parents No
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Status
+                                        Departure
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Arrival
+                                    </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Token
                                     </th>
                                     <th scope="col" className="py-3 px-4">
                                     </th>
@@ -75,7 +83,7 @@ export default function adminApproveds(props) {
                             </thead>
                             <tbody>
                                 {props.data.map(obj => {
-                                    return <TableRow data={obj} key={obj._id} />
+                                    return <RejectedTableRow rowData={obj} key={obj._id} />
                                 })}
 
                             </tbody>

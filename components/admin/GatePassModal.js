@@ -10,48 +10,46 @@ export default function GatePassModal({ data, setShowModal, arrival, departure }
                     <div className="relative transform overflow-hidden rounded-lg text-left sm:my-8 sm:w-full sm:max-w-lg">
                         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
-                            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <div className="px-6 md:px-2 mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h3 className="text-lg leading-6 text-gray-800 font-semibold" id="modal-title">Token is #{data.token}</h3>
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">GatePass details for the token no {data.token}</p>
                                 </div>
-                                <table className="text-sm shadow-sm w-full flex justify-center my-4">
+                                <div className="mt-8 flex flex-col items-start space-y-1 ">
+                                    <div className="flex">
+                                        <div className="w-24  p-2 text-left font-normal text-slate-900 bg-slate-50" >Name</div>
+                                        <div className=" p-2 text-slate-700">{data.firstname + " " + data.lastname}</div>
+                                    </div>
+                                    <div className="flex">
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Email</div>
+                                        <div className=" p-2 text-slate-700">{data.email}</div>
+                                    </div >
+                                    <div className="flex" >
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Mobile No</div>
+                                        <div className="min-w-36 der border-slate-300 p-2 text-slate-700">{data.mobileNo}</div>
+                                    </div>
+                                    <div className="flex" >
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Year</div>
+                                        <div className=" p-2 text-slate-700 ">{data.year}</div>
+                                    </div>
+                                    <div className="flex" >
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Parents No</div>
+                                        <div className=" p-2 text-slate-700 ">{data.parentsNo}</div>
+                                    </div>
+                                    <div className="flex" >
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Arrival</div>
+                                        <div className=" p-2 text-slate-700 ">{arrival}</div>
+                                    </div>
+                                    <div className="flex" >
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Departure</div>
+                                        <div className=" p-2 text-slate-700 ">{departure}</div>
+                                    </div>
+                                    <div className="flex" >
+                                        <div className="w-24  p-2 text-left font-normal  text-slate-900 bg-slate-50">Reason</div>
+                                        <div className=" p-2 text-slate-700 ">{data.reason}</div>
+                                    </div>
 
-                                    <tbody >
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left text-xs font-normal text-slate-900 bg-slate-50" >Name</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700">{data.firstname + " " + data.lastname}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Email</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700">{data.email}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Mobile No</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700">{data.mobileNo}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Year</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700 ">{data.year}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Parents No</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700 ">{data.parentsNo}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Arrival</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700 ">{arrival}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Departure</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700 ">{departure}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="border border-slate-300 p-2 text-left font-normal  text-slate-900 bg-slate-50">Reason</td>
-                                            <td className="border border-slate-300 p-2 text-slate-700 ">{data.reason}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
 
                         </div>

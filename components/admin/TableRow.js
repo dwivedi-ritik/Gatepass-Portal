@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { mailTemplateForApproval, mailTemplateForRejection, mailTextForApproval, mailTextForRejection } from "../../utils/mailTemplates"
 
 import { gatePassStatus } from "../../utils/constants"
 
 import Spinner from "../Spinner"
+import GatePassModal from "./GatePassModal"
+import { dateParserFromString } from "../../utils/helper"
 
 const handleMailingForApproval = (tokenId, receiver) => {
     const mailBody = mailTextForApproval(tokenId, 'https://gatepass.vercel.app/status/' + tokenId)
@@ -44,6 +46,15 @@ const handleWebPushNotification = (tokenId, status) => {
 export default function TableRow(props) {
     let [rowData, setRowData] = useState(props.data)
     let [showSpinner, setShowSpinner] = useState(false)
+    let [arrival, setArrival] = useState('')
+    let [departure, setDeparture] = useState('')
+    let [showModal, setShowModal] = useState(false)
+    useEffect(() => {
+        setArrival(dateParserFromString(rowData.arrival))
+        setDeparture(dateParserFromString(rowData.departure))
+
+    }, [])
+
     const approveStatusHandler = async () => {
         setShowSpinner(true)
         const res = await fetch("/api/gatepass/changeStatus", {
@@ -89,30 +100,42 @@ export default function TableRow(props) {
         setShowSpinner(false)
     }
     return (
-        <tr className="bg-white border-b">
+        <tr className="mt-6 sm:mt-0 w-full border-b" id="responsive-table">
             {showSpinner && <Spinner />}
-            <td className="py-4 px-6 font-medium  whitespace-nowrap text-gray-900">
+            <td data-label='Name' className=" text-right sm:text-left py-4 px-6 font-medium  whitespace-nowrap text-gray-900 border sm:border-0">
                 {rowData.firstname + " " + rowData.lastname}
             </td>
-            <td className="py-4 px-6 font-semibold">
+            <td data-label='Year' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
                 {rowData.year}
             </td>
-            <td className="py-4 px-6 font-semibold">
+            <td data-label='Room No' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
                 {rowData.roomNo}
             </td>
-            <td className="py-4 px-6 font-semibold">
-                {rowData.mobileNo}
+            <td data-label='Departure' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
+                {departure}
             </td>
-            <td className="py-4 px-6 font-semibold">
-                {rowData.parentsNo}
+            <td data-label='Arrival' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
+                {arrival}
             </td>
-            <td className="py-4 px-6 font-semibold">
+            <td data-label='Token' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
+                {rowData.token}
+            </td >
+            <td data-label='Status' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
                 {rowData.status.toUpperCase()}
             </td>
-            <td className="py-4 font-semibold">
+            <td className="py-4 px-6 text-indigo-600 cursor-pointer border sm:border-0 flex items-center space-x-4 ">
                 <a href="#" className="text-white bg-indigo-500 hover:bg-indigo-700  font-medium rounded-lg text-xs px-2 py-1 mr-2 mb-2" onClick={approveStatusHandler}>Approve</a>
                 <a href="#" className="text-white bg-red-500 hover:bg-red-700  font-medium rounded-lg text-xs px-2 py-1 mr-2 mb-2" onClick={rejectStatusHandler}>Reject</a>
             </td>
-        </tr>
+            <td className="py-4 px-6 border sm:border-0" onClick={() => setShowModal(true)} id="view-btn">
+                <button
+                    type="button"
+                    className="inline-block px-4 py-2 bg-indigo-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out"
+                >Details</button>
+            </td>
+            <td className="table-modal">
+                {showModal && <GatePassModal setShowModal={setShowModal} data={rowData} arrival={arrival} departure={departure} />}
+            </td>
+        </tr >
     )
 }

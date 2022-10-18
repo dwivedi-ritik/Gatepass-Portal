@@ -47,7 +47,7 @@ export default function adminPendings(props) {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto border-2 sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
+                    <div className="overflow-x-auto sm:rounded-lg mt-8 mx-4 h-auto md:max-h-[35rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -61,20 +61,26 @@ export default function adminPendings(props) {
                                         Room No
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Mobile No
+                                        Departure
                                     </th>
                                     <th scope="col" className="py-3 px-6">
-                                        Parents No
+                                        Arrival
                                     </th>
-
+                                    <th scope="col" className="py-3 px-6">
+                                        Token
+                                    </th>
                                     <th scope="col" className="py-3 px-6">
                                         Status
                                     </th>
                                     <th scope="col" className="py-3 px-4">
+                                        Change Status
+                                    </th>
+                                    <th scope="col" className="py-3 px-4">
+                                        Details
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="w-full">
                                 {props.data.map(obj => {
                                     return <TableRow data={obj} key={obj._id} />
                                 })}

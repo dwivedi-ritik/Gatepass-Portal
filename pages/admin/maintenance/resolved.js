@@ -8,16 +8,16 @@ import dbConnect from '../../../lib/dbConnect'
 import Maintenance from '../../../Model/Maintenance'
 import DownloadData from "../../../components/admin/DownloadData"
 
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { maintenanceStatus } from '../../../utils/constants'
 
 import Link from "next/link";
 
 
-function MaintenanceTableRow({ rowData }) {
+const MaintenanceTableRow = ({ rowData }) => {
 
     return (
-        <tr className="bg-white mt-6 sm:mt-0 w-full sm:border" id="responsive-table">
+        <tr className="bg-white mt-6 sm:mt-0 w-full sm:border-b" id="responsive-table">
             <td data-label='Title' className="text-right sm:text-left py-4 px-6 font-semibold ">
                 {rowData.title}
             </td>
@@ -51,29 +51,75 @@ function MaintenanceTableRow({ rowData }) {
     )
 }
 
+const SortComp = () => {
+    return (
+        <div className="h-auto rounded-md border shadow-lg w-[180px] absolute z-2 bg-white -left-24 top-8">
+            <div className="py-2 text-gray-700 hover:bg-indigo-600 hover:text-white rounded-md transition-all ease-out">
+                <div className="ml-2 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-5 w-5 ">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
+                    </svg>
+                    <p className="pl-2 text-sm">Sort Ascending</p>
+                </div>
+            </div>
+            <div className="py-2 text-gray-700 hover:bg-indigo-600 hover:text-white rounded-md transition-all ease-out">
+                <div className="ml-2 flex items-center  ">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-5 w-5 ">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75" />
+                    </svg>
+                    <p className=" pl-2 text-sm">Sort Descending</p>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const SearchBar = () => {
+    return (
+        <form className="flex items-center">
+            <div className="relative w-full">
+                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd">
+                        </path>
+                    </svg>
+                </div>
+                <input type="text" id="voice-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-1 focus:outline-none focus:ring-indigo-700" placeholder="Search By Token no" required>
+
+                </input>
+            </div>
+
+        </form>
+    )
+}
+
+
+
 export default function requests({ data, user }) {
+    let [sortComp, setSortComp] = useState(false)
     return (
         <>
             <Head>
                 <title>Resolved</title>
                 <meta name='description' description='Admin panel for changing maintenance requests and downlaoding the csv files'></meta>
             </Head>
-            <div className='flex bg-gray-100'>
+            <div className='flex bg-gray-50'>
                 <SideNav elName={"resolved"} />
                 <div className='w-full'>
                     <div className='mx-4'>
                         <AdminNav title={"Maintenance requests"} user={user} />
-                        <div className="mt-12 h-auto w-full rounded border bg-white">
-                            <div className="flex justify-between items-center mx-2 md:mx-6 my-4">
-                                <div className="font-medium">
-                                    <p className="text-xs text-gray-800 font-semibold">Resolved</p>
-                                </div>
+                        <div className="mt-12 h-auto w-full">
+                            <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
+                                <SearchBar />
                                 <div className="flex items-center gap-2">
                                     <DownloadData url={`/api/maintenance/getExcelSheet?status=${maintenanceStatus.RESOLVED}`} />
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
-                                    </svg>
-                                    <p className="text-xs text-gray-800 font-semibold">Sort</p>
+                                    <div className='flex space-x-2 relative cursor-pointer' onClick={() => setSortComp(!sortComp)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600 ">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
+                                        </svg>
+                                        <p className="text-xs text-gray-800 font-semibold">Sort</p>
+                                        {sortComp && <SortComp />}
+                                    </div>
 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
