@@ -18,7 +18,7 @@ const MaintenanceTableRow = ({ rowData }) => {
 
     return (
         <tr className="bg-white mt-6 sm:mt-0 w-full sm:border-b" id="responsive-table">
-            <td data-label='Title' className="text-right sm:text-left py-4 px-6 font-semibold ">
+            <td data-label='Title' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0">
                 {rowData.title}
             </td>
             <td data-label='Type' className="text-right sm:text-left py-4 px-6 font-semibold border sm:border-0 ">
@@ -42,9 +42,9 @@ const MaintenanceTableRow = ({ rowData }) => {
                         type="button"
                         className="px-4 py-2 bg-indigo-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out"
                     >View Details</button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="-mr-8 w-4 h-4 hover:text-indigo-600">
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="-mr-8 w-4 h-4 hover:text-indigo-600">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                    </svg>
+                    </svg> */}
                 </td>
             </Link>
         </tr>
@@ -135,8 +135,8 @@ export default function Resolved({ orgData, user }) {
                             </div>
                         </div>
                     </div>
-                    <div className="overflow-x-auto sm:rounded-lg mt-8 mx-4 ">
-                        <table className="w-full text-sm text-left text-gray-500 sm:border">
+                    <div className="overflow-x-auto sm:rounded-lg mt-8 mx-4 sm:border md:max-h-[30rem]">
+                        <table className="w-full text-sm text-left text-gray-500  ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
                                     <th scope="col" className="py-3 px-6">

@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import React, { useMemo, useState } from 'react'
+
 import { getSession } from "next-auth/react"
 
 import SideNav from '../../../components/admin/SideNav'
@@ -10,7 +12,8 @@ import DownloadData from "../../../components/admin/DownloadData"
 
 import MaintenanceTableRow from '../../../components/maitenance/MaintenanceTableRow'
 import { maintenanceStatus } from '../../../utils/constants'
-import React, { useMemo, useState } from 'react'
+
+
 
 export default function Unresolved({ orgData, user }) {
     const [searchText, setSearchText] = useState('')
@@ -64,7 +67,7 @@ export default function Unresolved({ orgData, user }) {
                             </div>
                         </div>
                     </div>
-                    <div className="overflow-x-auto border sm:rounded-lg mt-8 mx-4 h-auto max-h-[30rem]">
+                    <div className="overflow-x-auto md:border sm:rounded-lg mt-8 mx-4 h-auto md:max-h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -90,6 +93,7 @@ export default function Unresolved({ orgData, user }) {
                                         Show Details
                                     </th>
                                     <th scope="col" className="py-3 px-4">
+                                        Change Status
                                     </th>
                                 </tr>
                             </thead>

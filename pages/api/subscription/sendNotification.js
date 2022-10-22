@@ -1,6 +1,5 @@
 import webpush from "web-push"
 
-import { VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from "../../../utils/constants"
 import dbConnect from '../../../lib/dbConnect'
 import Notification from '../../../Model/Notification'
 
@@ -17,7 +16,7 @@ export default async function handler(req, res) {
     if (notificationDoc === null)
         return res.status(400).send('invalid token id')
 
-    webpush.setVapidDetails('https://gatepass.vercel.app/credit', VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY)
+    webpush.setVapidDetails('https://gatepass.vercel.app/credit', process.env.VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY)
 
     const payload = JSON.stringify({
         title: `GatePass Token ${token} has ${status}`,

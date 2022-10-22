@@ -7,7 +7,7 @@ A Portal for managing Gatepass and maintenances
 
 ## Done
 - Dropdown in Side nav of admin panel [Done]
-- Responsive table
+- Responsive table [Done]
 
 ## Known Bugs
 - Downloaded files does't add empty string on empty entries

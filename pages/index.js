@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Modal from '../components/Modal.js'
 import Spinner from '../components/Spinner.js'
 import NavBar from '../components/NavBar.js'
-import { dateParser, createToken, APP_ADDR, urlBase64ToUint8Array } from '../utils/helper.js'
+import { dateParser, createToken, urlBase64ToUint8Array } from '../utils/helper.js'
 import { gatePassStatus, VAPID_PUBLIC_KEY } from '../utils/constants.js'
 
 import { mailTemplateForNotification, mailTextForNotification } from '../utils/mailTemplates.js'
@@ -69,8 +69,8 @@ export default function Home() {
   const formSubmit = async (e) => {
     e.preventDefault()
     const token = createToken()
-    // handleMailingForNotification(token, email.current.value)
     setShowSpinner(true)
+    handleMailingForNotification(token, email.current.value)
     let out = await fetch("/api/gatepass/add", {
       method: "POST",
       body: JSON.stringify({
