@@ -1,18 +1,22 @@
 A Portal for managing Gatepass and maintenances 
 
+## Why 
+- it can save lot of time of students as well as Admin
+- it can track all the students records
+
 ## Todos
-- Modal of view details in Gatepass table [in progress] 
-- One Page to see all the Details about Gatepass and maintenaces
-- Rechart js Area Chart [ on Test-Chart Branch ]
+- [ ] One Page to see all the Details about Gatepass and maintenaces
+- [ ] Rechart js Area Chart [ on Test-Chart Branch ]
 
 ## Done
-- Dropdown in Side nav of admin panel [Done]
-- Responsive table [Done]
+- [x] Dropdown in Side nav of admin panel 
+- [x] Responsive table 
+- [x] Modal of view details in Gatepass table  
+
 
 ## Known Bugs
 - Downloaded files does't add empty string on empty entries
 - Side Nav is wiggling on mobile devices 
-
 
 
 Description of all the Implemented APIs
