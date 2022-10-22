@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Head from 'next/head'
 import { getSession } from 'next-auth/react'
 
@@ -51,9 +51,9 @@ const MaintenanceTableRow = ({ rowData }) => {
     )
 }
 
-const SortComp = () => {
+const SortComp = ({ setSortComp }) => {
     return (
-        <div className="h-auto rounded-md border shadow-lg w-[180px] absolute z-2 bg-white -left-24 top-8">
+        <div className="h-auto rounded-md border shadow-lg w-[180px] absolute z-2 bg-white -left-24 top-8" onMouseLeave={() => setSortComp(false)}>
             <div className="py-2 text-gray-700 hover:bg-indigo-600 hover:text-white rounded-md transition-all ease-out">
                 <div className="ml-2 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-5 w-5 ">
@@ -74,29 +74,20 @@ const SortComp = () => {
     )
 }
 
-const SearchBar = () => {
-    return (
-        <form className="flex items-center">
-            <div className="relative w-full">
-                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd">
-                        </path>
-                    </svg>
-                </div>
-                <input type="text" id="voice-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-1 focus:outline-none focus:ring-indigo-700" placeholder="Search By Token no" required>
-
-                </input>
-            </div>
-
-        </form>
-    )
-}
 
 
 
-export default function Resolved({ data, user }) {
+export default function Resolved({ orgData, user }) {
+
+    const [searchText, setSearchText] = useState('')
     let [sortComp, setSortComp] = useState(false)
+
+    let filteredData = useMemo(() => {
+        return orgData.filter(data => {
+            return data.token.includes(searchText)
+        })
+    }, [searchText])
+
     return (
         <>
             <Head>
@@ -108,17 +99,31 @@ export default function Resolved({ data, user }) {
                 <div className='w-full'>
                     <div className='mx-4'>
                         <AdminNav title={"Maintenance requests"} user={user} />
-                        <div className="mt-12 h-auto w-full">
-                            <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
-                                <SearchBar />
-                                <div className="flex items-center gap-2">
+                        <div className="mt-12 w-full">
+                            <div className="flex flex-col md:flex-row justify-between items-center  gap-4">
+                                {/* Search bar */}
+                                <form className="flex items-center">
+                                    <div className="relative w-full">
+                                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <input value={searchText} onChange={(e) => setSearchText(e.target.value)} type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-1 focus:outline-none focus:ring-indigo-700" placeholder="Search By Token no" required>
+
+                                        </input>
+                                    </div>
+                                </form>
+
+                                <div className="flex items-center gap-2" >
                                     <DownloadData url={`/api/maintenance/getExcelSheet?status=${maintenanceStatus.RESOLVED}`} />
-                                    <div className='flex space-x-2 relative cursor-pointer' onClick={() => setSortComp(!sortComp)}>
+                                    <div className='flex space-x-2 relative cursor-pointer' onClick={() => setSortComp(true)} >
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600 ">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                                         </svg>
                                         <p className="text-xs text-gray-800 font-semibold">Sort</p>
-                                        {sortComp && <SortComp />}
+                                        {sortComp && <SortComp setSortComp={setSortComp} />}
                                     </div>
 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
@@ -159,7 +164,7 @@ export default function Resolved({ data, user }) {
                                 </tr>
                             </thead>
                             <tbody className='w-full'>
-                                {data.map(obj => {
+                                {filteredData.map(obj => {
                                     return <MaintenanceTableRow rowData={obj} key={obj._id} />
                                 })}
                             </tbody>
@@ -186,7 +191,7 @@ export async function getServerSideProps(context) {
     const allRequests = await Maintenance.find({ status: maintenanceStatus.RESOLVED }).sort({ "createdAt": "desc" })
     return {
         props: {
-            data: JSON.parse(JSON.stringify(allRequests)),
+            orgData: JSON.parse(JSON.stringify(allRequests)),
             user: session.user
         }
     }

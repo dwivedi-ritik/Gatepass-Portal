@@ -10,8 +10,16 @@ import DownloadData from "../../../components/admin/DownloadData"
 
 import MaintenanceTableRow from '../../../components/maitenance/MaintenanceTableRow'
 import { maintenanceStatus } from '../../../utils/constants'
+import React, { useMemo, useState } from 'react'
 
-export default function unresolved({ data, user }) {
+export default function Unresolved({ orgData, user }) {
+    const [searchText, setSearchText] = useState('')
+    let filteredData = useMemo(() => {
+        return orgData.filter((data) => {
+            return data.token.includes(searchText)
+        })
+    }, [searchText])
+
     return (
         <>
             <Head>
@@ -23,11 +31,23 @@ export default function unresolved({ data, user }) {
                 <div className='w-full'>
                     <div className='mx-4'>
                         <AdminNav title={"Maintenance requests"} user={user} />
-                        <div className="mt-12 h-auto w-full rounded border bg-white">
-                            <div className="flex justify-between items-center mx-2 my-2 sm:my-4 sm:mx-4">
-                                <div className="">
-                                    <p className="text-xs font-semibold  text-gray-800 ">Unresolveds</p>
-                                </div>
+                        <div className="mt-12 w-full bg-white">
+                            <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
+                                {/* Search bar  */}
+                                <form className="flex items-center">
+                                    <div className="relative w-full">
+                                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" className="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <input value={searchText} onChange={(e) => setSearchText(e.target.value)} type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-1 focus:outline-none focus:ring-indigo-700" placeholder="Search By Token no" required>
+                                        </input>
+                                    </div>
+                                </form>
+
+
                                 <div className="flex items-center gap-2">
                                     <DownloadData url={`/api/maintenance/getExcelSheet?status=${maintenanceStatus.UNRESOLVED}`} />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-3 h-3 text-gray-600">
@@ -74,7 +94,7 @@ export default function unresolved({ data, user }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map(obj => {
+                                {filteredData.map(obj => {
                                     return <MaintenanceTableRow rowData={obj} key={obj._id} />
                                 })}
                             </tbody>
@@ -102,7 +122,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            data: JSON.parse(JSON.stringify(allRequests)),
+            orgData: JSON.parse(JSON.stringify(allRequests)),
             user: session.user
         }
     }
