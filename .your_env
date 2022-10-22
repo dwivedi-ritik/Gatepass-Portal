@@ -1,0 +1,5 @@
+MONGODB_URI=mongodb_url
+NEXTAUTH_SECRET=nextauth_secret
+VAPID_PUBLIC_KEY=webpush_public_key
+VAPID_PRIVATE_KEY=webpush_private_key
+MAIL_PASS=email_secret_pass // For my case i used app passwords for gmail account

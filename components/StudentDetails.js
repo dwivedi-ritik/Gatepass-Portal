@@ -1,4 +1,4 @@
-import react from "react"
+import React from "react"
 import { dateParser } from "../utils/helper"
 import { gatePassStatus } from "../utils/constants"
 
