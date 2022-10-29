@@ -111,10 +111,10 @@ export default function Resolved({ orgData, user }) {
                                             </svg>
                                         </div>
                                         <input value={searchText} onChange={(e) => setSearchText(e.target.value)} type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-1 focus:outline-none focus:ring-indigo-700" placeholder="Search By Token no" required>
-
                                         </input>
                                     </div>
                                 </form>
+                                {/* Search Bar End here */}
 
                                 <div className="flex items-center gap-2" >
                                     <DownloadData url={`/api/maintenance/getExcelSheet?status=${maintenanceStatus.RESOLVED}`} />
@@ -135,6 +135,7 @@ export default function Resolved({ orgData, user }) {
                             </div>
                         </div>
                     </div>
+
                     <div className="overflow-x-auto sm:rounded-lg mt-8 mx-4 sm:border md:max-h-[30rem]">
                         <table className="w-full text-sm text-left text-gray-500  ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
