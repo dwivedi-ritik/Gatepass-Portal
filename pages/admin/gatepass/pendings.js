@@ -38,7 +38,7 @@ const SortComp = ({ setSortComp }) => {
 }
 
 
-export default function adminPendings({ orgData, user }) {
+export default function AdminPendings({ orgData, user }) {
     const DOWNLOAD_URL = `/api/gatepass/getExcelSheet?status=${gatePassStatus.PENDING}`
     let [searchText, setSearchText] = useState('')
     let [sortComp, setSortComp] = useState(false)

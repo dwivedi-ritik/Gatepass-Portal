@@ -35,7 +35,7 @@ const SortComp = ({ setSortComp }) => {
     )
 }
 
-export default function adminRejecteds({ orgData, user }) {
+export default function AdminRejecteds({ orgData, user }) {
     const DOWNLOAD_URL = `/api/gatepass/getExcelSheet?status=${gatePassStatus.REJECTED}`
     let [searchText, setSearchText] = useState('')
     let [sortComp, setSortComp] = useState(false)
