@@ -8,7 +8,7 @@ const fetcher = (...args) => fetch(...args, {
     method: "GET"
 }).then(res => res.json())
 
-export default function verifyQrCode() {
+export default function VerifyQrCode() {
     const router = useRouter()
     const qrId = router.query.id
     const url = `/api/qr/getDataById?gatePassId=${qrId}`
