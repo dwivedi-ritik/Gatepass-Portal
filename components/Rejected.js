@@ -24,7 +24,7 @@ export default function Pending(props) {
                 </div>
                 <div className='mt-3 flex justify-center w-full'>
                     <Image
-                        text={'https://www.github.com/dwivedi-ritik'}
+                        text={HOSTED_URL + '/qr/verify/' + props.qrUrl}
                         options={{
                             type: 'image/jpeg',
                             quality: 0.3,

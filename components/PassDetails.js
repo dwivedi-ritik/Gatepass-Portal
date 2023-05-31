@@ -10,26 +10,26 @@ export default function PassDetails(props) {
     if (props.data.status === gatePassStatus.PENDING) {
         return (
             <>
-            <Pending />
-            <StudentDetails details={props.data}/>
+                <Pending qrUrl={props.data._id} />
+                <StudentDetails details={props.data} />
             </>
         )
     }
     if (props.data.status === gatePassStatus.REJECTED) {
         return (
             <>
-            <Rejected />
-            <StudentDetails details={props.data}/>
-            
+                <Rejected qrUrl={props.data._id} />
+                <StudentDetails details={props.data} />
+
             </>
         )
     }
     if (props.data.status === gatePassStatus.APPROVED) {
         return (
             <>
-            <Approved />
-            <StudentDetails details={props.data}/>
-            
+                <Approved qrUrl={props.data._id} />
+                <StudentDetails details={props.data} />
+
             </>
         )
     }

@@ -1,7 +1,7 @@
 import dbConnect from "../../../lib/dbConnect";
 import Maintenance from "../../../Model/Maintenance";
 import { maintenanceStatus } from "../../../utils/constants";
-import { getMonthByStringDate } from "../../../utils/helper";
+import { getMonthByStringDate, getYearByStringDate } from "../../../utils/helper";
 
 
 export default async function handler(req, res) {
@@ -76,10 +76,12 @@ export default async function handler(req, res) {
     // const inProgressDocs = await Maintenance.find().where('status').equals(maintenanceStatus.IN_PROGRESS) Implemenation later
 
     unresolvedDocs.forEach((element) => {
+        if (!(new Date().getFullYear() === getYearByStringDate(element.createdAt))) return
         let i = getMonthByStringDate(element.createdAt)
         chartData[i].unresolved++
     })
     resolvedDocs.forEach((element) => {
+        if (!(new Date().getFullYear() === getYearByStringDate(element.createdAt))) return
         let i = getMonthByStringDate(element.createdAt)
         chartData[i].resolved++
     })

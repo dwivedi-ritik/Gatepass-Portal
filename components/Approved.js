@@ -23,7 +23,7 @@ export default function Pending(props) {
                 </div>
                 <div className='mt-3 flex justify-center w-full'>
                     <Image
-                        text={'https://www.github.com/dwivedi-ritik'}
+                        text={HOSTED_URL + '/qr/verify/' + props.qrUrl}
                         options={{
                             type: 'image/jpeg',
                             quality: 0.3,
@@ -38,7 +38,7 @@ export default function Pending(props) {
                     <p className='text-green-500 italic  text-lg font-semibold text-center'>Approved</p>
                     <p className='text-xs italic text-center mt-3'>This Token will be only be valid before Arrival Date</p>
                 </div>
-               
+
             </div>
         </div>
     )

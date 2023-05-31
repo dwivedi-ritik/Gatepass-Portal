@@ -1,4 +1,5 @@
 import { customAlphabet } from 'nanoid'
+
 export function dateParser(stringDate) {
     let tempDate = Date.parse(stringDate)
     let date = new Date(tempDate)
@@ -21,6 +22,11 @@ export function getMonthByStringDate(stringDate) {
     let date = new Date(tempDate)
     return date.getMonth()
 }
+export function getYearByStringDate(stringDate) {
+    let tempDate = Date.parse(stringDate)
+    let date = new Date(tempDate)
+    return date.getFullYear()
+}
 
 export function parseJson(obj) {
     return JSON.parse(JSON.stringify(obj))
@@ -39,4 +45,12 @@ export function urlBase64ToUint8Array(base64String) {
         outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
+}
+
+export function placeholderReplacement(placeholders, body) {
+    for (let placeholder in placeholders) {
+        let re = new RegExp(`{{${placeholder}}}`, 'g')
+        body = body.replace(re, placeholders[placeholder])
+    }
+    return body
 }

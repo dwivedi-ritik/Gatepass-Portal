@@ -10,3 +10,5 @@ export const maintenanceStatus = {
     UNRESOLVED: "unresolved",
     IN_PROGRESS: "inprogress"
 }
+
+export const HOSTED_URL = "localhost:3000"
