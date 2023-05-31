@@ -1,4 +1,5 @@
 import React from "react"
+import * as htmlToImage from 'html-to-image';
 
 const InvalidTicket = () => {
     return (
@@ -25,9 +26,23 @@ const ValidTicket = () => {
 
 export default function QrInfo({ data }) {
     const ticketReview = data.status === 'rejected' || new Date(data.departure) > new Date(data.arrival) || new Date() > new Date(data.arrival) ? <InvalidTicket /> : <ValidTicket />
-    console.log(ticketReview)
+    const handleDownload = () => {
+        const element = document.querySelector('.ticket-main'); // Replace 'page-container' with the ID of the container element for your page
+        htmlToImage
+            .toPng(element)
+            .then(function (dataUrl) {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'page.png'; // Specify the desired file name here
+                link.click();
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    };
+
     return (
-        <>  <div className="w-100 mt-12">
+        <>  <div className="w-100 mt-12 ticket-main">
             <div className="h-auto mx-4 sm:w-1/3 sm:mx-auto bg-gray-100 p-2 rounded-md border border-gray-4 divide-y-2 divide-dashed">
                 <div className="mx-auto py-4">
                     <p className="text-2xl tracking-tight font-extrabold lg:text-3xl text-primary-600 text-center uppercase">{data.status}</p>
@@ -79,7 +94,7 @@ export default function QrInfo({ data }) {
                 <div className="flex justify-center py-3">
                     {ticketReview}
                 </div>
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-4" onClick={handleDownload}>
                     <a className="appearance-none cursor-pointer flex items-center gap-2 rounded-lg border border-transparent h-12 w-1/2 mt-6 bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700  sm:text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
