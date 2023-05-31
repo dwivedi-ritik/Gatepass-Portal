@@ -76,7 +76,7 @@ export default function AdminOverview({ user }) {
                             </div>
                             <div className="h-20  border flex flex-col items-center justify-center">
                                 <p className="text-sm text-gray-400">Approval Ratio</p>
-                                <p className="text-sm font-semibold">{((dashboard.approveCount / dashboard.pendingCount) * 100).toFixed(2)}%</p>
+                                <p className="text-sm font-semibold">{((dashboard.approveCount / (dashboard.pendingCount + dashboard.approveCount + dashboard.rejectCount)) * 100).toFixed(2)}%</p>
                             </div>
                         </div>
                     </div>
